@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = 'moonveil_gpt6-astra-pro_mcp-alagent_threejs'
+BASE = 'moonveil_gpt6-astra-pro_mcp-colabdev_threejs'
 
 def digest(file: Path) -> str:
     h = hashlib.sha256()

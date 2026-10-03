@@ -5,7 +5,7 @@ import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 const root=process.cwd(),out=path.join(root,'output/validation');await mkdir(out,{recursive:true});
-const basename='moonveil_gpt6-astra-pro_mcp-alagent_threejs',base='http://127.0.0.1:4186';
+const basename='moonveil_gpt6-astra-pro_mcp-colabdev_threejs',base='http://127.0.0.1:4186';
 const checks=[],errors=[],requests=[];
 const check=async(name,fn)=>{try{const detail=await fn();checks.push({name,passed:true,detail});}catch(e){checks.push({name,passed:false,error:String(e)});}};
 const browser=await chromium.launch(browserOptions());

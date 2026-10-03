@@ -1,0 +1,46 @@
+{
+  "legs": [
+    {
+      "leg": "right",
+      "thigh": 1.4,
+      "shin": 1.632,
+      "ankleHeight": 0.165,
+      "soleBase": 0.014,
+      "knee": [
+        -0.23987901999598304,
+        1.7603522443644888,
+        0.1548613870807175
+      ]
+    },
+    {
+      "leg": "left",
+      "thigh": 1.4,
+      "shin": 1.632,
+      "ankleHeight": 0.165,
+      "soleBase": 0.014,
+      "knee": [
+        0.13641857070149518,
+        1.7873630904583568,
+        0.37234861126292557
+      ]
+    }
+  ],
+  "hands": [
+    {
+      "hand": "raised",
+      "vertices": 14141,
+      "triangles": 28278,
+      "repeatedIndexFaces": 0,
+      "boundaryEdges": 0,
+      "nonmanifoldEdges": 0
+    },
+    {
+      "hand": "holding",
+      "vertices": 17118,
+      "triangles": 34236,
+      "repeatedIndexFaces": 0,
+      "boundaryEdges": 0,
+      "nonmanifoldEdges": 0
+    }
+  ]
+}

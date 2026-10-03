@@ -52,7 +52,7 @@ export function buildCostume(root,M){
  line(clothes,'Pocket upper welt',[[.145,4.493,frontZ(.145,4.493)+.041],[.278,4.469,frontZ(.278,4.469)+.041],[.406,4.428,frontZ(.406,4.428)+.041]],.006,M.white,{steps:32,sides:8});
  for(const s of [-1,1]){
   loft(clothes,`${s<0?'Right':'Left'} loose pajama shorts`,[[2.835,s*.258,.045,.282,.335],[2.94,s*.26,.04,.316,.356],[3.14,s*.254,.025,.309,.347],[3.37,s*.244,.008,.286,.301],[3.635,s*.218,-.005,.28,.278],[3.74,s*.214,-.008,.21,.22]],M.shorts,{segments:56,steps:45,outline:.005,deform:(p,u,v)=>[p[0]+.006*Math.cos(u*Math.PI*12)*(1-v),p[1],p[2]+.018*Math.sin(u*Math.PI*10+v*3)*(1-v)*Math.sin(v*Math.PI)]});
-  ruffle(clothes,`${s<0?'Right':'Left'} shorts scallops`,[s*.258,2.85,.045],[0,-1,0],.28,.329,M.blue,M.white,9);
+  ruffle(clothes,`${s<0?'Right':'Left'} shorts scallops`,[s*.258,2.85,.045+(s>0?.045:0)],[0,-1,0],.28,.329,M.blue,M.white,9);
  }
  line(clothes,'Shorts center front seam',[[0,3.59,.294],[.006,3.39,.30],[.014,3.19,.298],[.014,3.02,.202]],.004,M.piping,{steps:36,sides:6});
  return clothes;

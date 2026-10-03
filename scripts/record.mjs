@@ -1,4 +1,4 @@
-import {readFile,writeFile,stat} from 'node:fs/promises';
+import {readFile,writeFile,stat,readdir} from 'node:fs/promises';
 const [id,scoreText,view,title,note]=process.argv.slice(2);
 const iteration=Number(id),score=Number(scoreText);
 if(!Number.isInteger(iteration)||!Number.isFinite(score)||score<0||score>100||!title||!note)throw Error('record: iteration score view title note required');
@@ -10,5 +10,12 @@ const entry={iteration,score,title,note,image:`./preview/${file}.png`,absolutePa
 data.iterations=data.iterations.filter(x=>x.iteration!==iteration).concat(entry).sort((a,b)=>a.iteration-b.iteration);
 data.visualScore=score;data.review=note;data.status='Refining reference likeness';
 data.testsSummary=`Chrome: ${evidence.errors.length} JavaScript errors; ${evidence.stats.badVertices} invalid coordinates`;
-await writeFile('docs/manifest.json',JSON.stringify(data,null,2)+'\n');
+const available=await readdir('output/iterations');
+data.latestViews=[];
+for(const [view,label]of [['front','Full character'],['raisedhand','Right hand · temple'],['pillowhand','Left hand · pillow'],['legs','Matched leg proportions'],['portrait','Portrait'],['side','Side view'],['back','Rear hair and costume']]){
+ const choices=available.filter(f=>f.endsWith('-'+view+'.json')&&/^iteration-\d+-/.test(f)).map(f=>({file:f,id:Number(f.match(/^iteration-(\d+)/)[1])})).filter(f=>data.iterations.some(it=>it.iteration===f.id)).sort((a,b)=>b.id-a.id);
+ if(!choices.length)continue;const stem=choices[0].file.replace(/\.json$/,'');
+ try{await stat('build/preview/'+stem+'.png');data.latestViews.push({url:'./preview/'+stem+'.png',label:label+' · review '+choices[0].id,absolutePath:data.buildPath+'/preview/'+stem+'.png'});}catch{}
+}
+await writeFile('docs/manifest.json' ,JSON.stringify(data,null,2)+'\n');
 console.log(JSON.stringify({recorded:iteration,subjectiveVisualScore:score,actualReviewedPasses:data.iterations.length}));

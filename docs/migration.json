@@ -1,0 +1,8 @@
+{
+  "sourceCheckpoint": "dffd51c",
+  "sourceArchiveSha256": "13f7c00b6c01bd9c2849b0dd8cf1aa97b1e2ab0b4073f40329a93281bba3e3e1",
+  "archiveVerified": true,
+  "destination": "/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web",
+  "runtime": "mcp_colabdev dev highram",
+  "note": "Archive contains all source and outputs but not the original Git object database; imported snapshot committed locally."
+}

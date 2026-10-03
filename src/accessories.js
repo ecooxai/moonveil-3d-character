@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {LEGS} from './anatomy.js';
 import {mesh,gridGeometry,sweep,line,ellipsoid,V} from './geometry.js';
 function shoe(root,M,name,x,y,z,far=false){
  const group=new THREE.Group();group.name=name+' assembly';group.position.x=x;group.scale.x=1.24;root.add(group);root=group;x=0;
@@ -28,13 +29,13 @@ export function buildAccessories(root,M){
  const ring=mesh(halo,'Charcoal flat annular halo',new THREE.ExtrudeGeometry(shape,{depth:.048,bevelEnabled:true,bevelThickness:.004,bevelSize:.004,bevelSegments:2,steps:1,curveSegments:72}),M.halo,.002);ring.rotation.x=-Math.PI/2;
  const glow=mesh(halo,'Fine cyan halo inlay',new THREE.TorusGeometry(.650,.0045,8,128),M.haloBlue,0);glow.rotation.x=Math.PI/2;glow.position.y=.015;
  const inner=mesh(halo,'Dark inner halo rim',new THREE.TorusGeometry(.591,.003,8,100),M.haloDark,0);inner.rotation.x=Math.PI/2;inner.position.y=.012;
- shoe(accessories,M,'Far slipper',-.234,.498,-.182,true);shoe(accessories,M,'Near slipper',.025,.014,.607,false);
- const A=V([1.102,3.092,.162]),B=V([2.06,2.344,.034]),C=V([.935,.718,-.08]),D=V([-.13,1.442,-.445]);
- const AB=new THREE.CubicBezierCurve3(A,V([1.186,2.912,.123]),V([1.852,2.392,.055]),B);
+ for(const leg of LEGS)shoe(accessories,M,leg.side==='right'?'Far slipper':'Near slipper',...leg.shoe,leg.side==='right');
+ const A=V([1.144,3.158,.258]),B=V([2.06,2.344,.034]),C=V([.935,.718,-.08]),D=V([-.13,1.442,-.445]);
+ const AB=new THREE.CubicBezierCurve3(A,V([1.149,3.050,.262]),V([1.852,2.392,.055]),B);
  const BC=new THREE.CubicBezierCurve3(B,V([1.945,1.893,.018]),V([1.010,.903,-.068]),C);
  const DC=new THREE.CubicBezierCurve3(D,V([.165,1.409,-.360]),V([.800,.863,-.137]),C);
- const AD=new THREE.CubicBezierCurve3(A,V([.663,2.967,-.10]),V([-.304,1.963,-.461]),D);
- const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.emissiveIntensity=.30;
+ const AD=new THREE.CubicBezierCurve3(A,V([1.060,3.130,.258]),V([-.304,1.963,-.461]),D);
+ const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.emissiveIntensity=.48;
  const pillowPoint=(u,v,side)=>{
   const q=1-v,base=A.clone().multiplyScalar((1-u)*(1-q)).addScaledVector(B,u*(1-q)).addScaledVector(C,u*q).addScaledVector(D,(1-u)*q);
   const p=AB.getPoint(u).multiplyScalar(1-q).addScaledVector(DC.getPoint(u),q).addScaledVector(AD.getPoint(q),1-u).addScaledVector(BC.getPoint(q),u).sub(base);
@@ -52,7 +53,6 @@ export function buildAccessories(root,M){
  }
  const seam=[];for(const [edge,reverse]of[[AB,false],[BC,false],[DC,true],[AD,true]])for(let i=0;i<32;i++)seam.push(edge.getPoint(reverse?1-i/32:i/32).toArray());
  line(accessories,'Pillow continuous sewn edge',seam,.009,M.whiteShade,{steps:160,sides:8,closed:true});
- sweep(accessories,'Pinched pillow corner',[[1.097,3.066,.166],[1.136,3.143,.156],[1.151,3.191,.172]],[.045,.034,.001],[.025,.021,.001],M.white,{steps:26,sides:14,outline:.003});
  accessories.traverse(o=>{if(o.isMesh&&/bow|headband/i.test(o.name))o.receiveShadow=false;});
  return {accessories,halo};
 }
