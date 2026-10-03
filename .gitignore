@@ -10,3 +10,11 @@ output/*.html
 
 __pycache__/
 output/release.json
+
+output/*.bundle
+
+*.pyc
+
+output/*.json
+
+output/legacy-localvm/

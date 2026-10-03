@@ -1,97 +1,58 @@
-# Moonveil — continuation handoff
+# Moonveil continuation handoff — GPT-6 Astra Pro / mcp_colabdev / Three.js
 
-## Checkpoint status
+Prepared 2026-10-03T08:33:45.653539+00:00.
 
-This is a reviewable reconstruction checkpoint, not completion of the user's 95/100 or 20,000-iteration target. There are **21 recorded edit/render-or-test/review passes** with a **subjective 85/100 likeness estimate**. Rejected regressions are retained in the journal with lower scores. Automated camera checks are not counted as visual iterations.
+## State to recover
 
-All **28 browser/geometry/export checks passed**, with zero reported JavaScript exceptions or invalid coordinates. The latest named previews, original render evidence, JSON reports, source code, and build journal are preserved. The source hash of the validated web build is `80987b2667ddd715`.
+- Active project: `/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web`.
+- Build symlink target: `/build/moonveil_gpt6_astra_pro_mcp_colabdev_web`.
+- Current source hash: `498789d40a9ae64c`.
+- Branch: `gpt6-astra-pro-mcp-colabdev-hands-legs-polish`. The final commit is recorded in `release.json`; the archive also carries a Git bundle for the imported Colab history.
+- Preview: https://lonely-demographic-earlier-comp.trycloudflare.com/ (temporary tunnel, not permanent Pages hosting).
+- Studio server: port 4186, process ID in `.cache/colab-server.pid`; tunnel process in `.cache/colab-tunnel.pid`.
+- 51 real recorded review passes, 95/100 subjective review, 46 current tests passed. No 20,000-iteration or objective 95%-similarity claim.
 
-## Locations and services
+The initial local archive (`dffd51c` checkpoint) was transferred in the interrupted prior attempt. `docs/migration.json` records SHA-256 `13f7c00b6c01bd9c2849b0dd8cf1aa97b1e2ab0b4073f40329a93281bba3e3e1` and successful verification. Do not overwrite newer Colab edits with that older snapshot.
 
-Project: `/home/admin/project/3d/moonveil_gpt6_astra_pro_mcp_alagent_web`
+## Anatomy invariants
 
-Build: `/build/moonveil_gpt6_astra_pro_mcp_alagent_web` (the project's `build` entry is a symlink).
+`src/anatomy.js` constructs both knees from equal segment lengths: thigh 1.400, shin 1.632 model units. Both ankles are at height 0.165 and both slipper assemblies use base 0.014. `src/proportion-guide.js` measures the already-posed landmarks and actual sole vertices. Preserve these checks; do not reintroduce the old right-leg shortening or raised-heel geometry shortcut.
 
-Branch: `gpt6-astra-pro-mcp-alagent-moonveil-refinement-web`
+`src/hand-shapes.js` contains authored finger, palm and arm paths. `scripts/bake-hands.mjs` builds a continuous signed-distance surface, smooths it and simplifies it with a bounded geometric error. `cleanFaces` cancels opposite duplicate faces after simplification; omitting it reintroduces a zero-volume flap and a nonmanifold edge at the left wrist. Both arm/hand meshes currently have one connected component, five authored digits, Euler characteristic 2, and zero open or nonmanifold edges.
 
-Public preview: `https://amount-wells-omissions-relation.trycloudflare.com/`
+`src/hand-meshes.json` contains large encoded numeric arrays. **Do not print or cat it into tool output.** Read it programmatically and print only summaries. It is a build cache, not an image billboard. `src/hands.js` reconstructs the meshes and adds restrained nail and crease details.
 
-The public URL is a temporary cloudflared Quick Tunnel, not a permanent Pages deployment. The task's Node server listens on `127.0.0.1:4186`; `/health` is a read-only health endpoint. Tunnel logs are `output/cloudflared.log`. Do not stop unrelated projects or the active MCP backend. If the task's tunnel is gone, run its `.cache/cloudflared` with `tunnel --url http://127.0.0.1:4186 --no-autoupdate --protocol http2` and read the new URL from its output.
+`src/pose.js` applies a shared posture to contacting surfaces. Legs are exempt from the upper-body deformation. The current head mapping restores the earlier over-compressed face: `headShift(y) = .10 - .014 * (y - 5.20)`.
 
-Export basename: `moonveil_gpt6-astra-pro_mcp-alagent_threejs`
+## Visual and viewer structure
 
-The `.html`, `.glb`, and `.zip` artifacts are served from the build root. Important deliverables are also copied into project `output/`. The packaging command retains the archive in `/home/admin/Library/project/moonveil_gpt6_astra_pro_mcp_alagent_web/`; that is a folder on the local VM, **not an upload to ChatGPT's personal Library**. Confirm the checksum and exact retained path in `output/release.json` after packaging.
+`face.js`, `hair.js`, `costume.js`, `accessories.js`, `materials.js` and `textures.js` are hand-authored geometric and material definitions. The original illustration was inspected visually; no automated image analysis or image-to-mesh inference was used.
 
-## Environment recovery
+The scalp, bangs and rear locks are real volumes. The temple ribbon has a continuous root-to-tip contour. The cloth uses controlled fold displacement and coherent fabric-scale UVs; the breast pocket shares shirt coordinates. Skin has restrained cel steps while cotton remains bright. The pillow is a closed filled surface with tension folds and a sewn edge.
 
-Colab failed to restore the home directory because the `gdrive` OAuth token is expired/revoked (`invalid_grant`). The recovered journal records 20 retries separated by 30 seconds. A fresh Colab start in this continuation failed for the same reason. Do not overwrite backups or edit credentials. The active fallback is the `mcp_alagent` Linux VM, with roughly 1.64 GiB RAM, two logical CPUs, and swap.
+`optimize.js` keeps the original named sculpture and creates a separate material-batched draw tree. Exports use the original named meshes. Avoid changing one geometry's attribute layout without accounting for material batching.
 
-Read `lessagent://server/instruction.md` before using the agent. Neither `Agents.md` nor `AGENTS.md` was present in the project or `/home/admin/project/3d` at recovery. Preserve unrelated work.
+The studio polls its manifest and reloads a new verified build while preserving the camera. Icons are embedded SVGs, not font glyphs. Detail buttons scroll back to the viewport; mobile regression tests verify actual viewport visibility rather than merely testing offscreen controls. Keyboard shortcuts and emulated touch are covered.
 
-Node is not on the default command PATH:
+## Safe next edit loop
 
-```sh
-export PATH=/home/admin/.nvm/versions/node/v22.23.2/bin:$PATH
-npm run build
-npm run serve
-```
+Read current Git status and preserve unrelated work. Use the connected Colab runtime and project above. No `Agents.md` or `AGENTS.md` existed in the checked project roots. Headless Chrome is selected through `scripts/browser.mjs`; `/home/dev/.local/bin/chromium` works in this runtime.
 
-The existing task server is already running; do not start another on the same port unnecessarily. Dependencies are pinned in `package-lock.json`: Three.js 0.180.0, esbuild 0.25.10, and playwright-core 1.56.1.
+1. Edit the relevant source; build with `npm run build`.
+2. Capture named views with `scripts/capture-views.mjs`; inspect them with `mcp_colabdev.get_image`.
+3. Record only actual reviewed passes using `scripts/record.mjs N SCORE VIEW TITLE NOTE`. Never fabricate iterations or similarity scores.
+4. Run `npm test` and `node scripts/audit-anatomy.mjs --strict`.
+5. Run `python3 scripts/prepare-release.py`, rebuild the manifest/standalone HTML, commit, create the Git bundle, and run `python3 scripts/package.py --persist`.
+6. Request `mcp_colabdev.colab` with `cmd: backup`; verify completion using `details backup`. Stopping does not back up.
 
-## Model and source architecture
+Webterm output is truncated by default. Use `webterm read ID --full` instead of rerunning commands. Completed command shells can still occupy the 32-session runtime limit: stop only completed task terminals. Never stop the preview services or the MCP backend indiscriminately.
 
-The supplied illustration shows long violet hair, an asymmetric forehead curl, a white headband and bow, a charcoal/cyan halo, pale cyan cat-print pajamas, scalloped hems, a raised hand, a held white pillow, and rose-bow slippers. The reference was inspected by vision, not processed by image-analysis code. No generated image or reference billboard is used. The original image remains in the conversation; it is not bundled in the VM archive.
+## Recovery and persistence
 
-`src/geometry.js` supplies lofts, sweeps, closed curved/beveled contour volumes, outlines, and seam-normal smoothing. `body.js`, `face.js`, `hair.js`, `costume.js`, and `accessories.js` author the named sculpture. `materials.js` and `textures.js` create the toon materials and procedural vector cat/eye/blush textures. `pose.js` applies the shared posture before rendering. `main.js`, `index.html`, and `style.css` implement the studio.
+The current source and release ZIP are under `/home/dev`. The build target is under `/build`, which may not survive a home-only restore. The ZIP includes the complete built site. After a restore, create the build target, then restore the ZIP's `build/` members into the project or rebuild and restore the previews from the ZIP. Keep the project build symlink pointing to the target above when using this Colab layout. A separately extracted ZIP has a normal portable `build/` directory.
 
-`src/optimize.js` builds a separate material-batched draw tree while preserving the original named sculpture for export. It bakes outline extrusion in the original local coordinates before nonuniform transforms. The original `character.root` remains editable; do not sculpt the derived `character.drawRoot` directly.
+The retained archive path is `/home/dev/Library/project/moonveil_gpt6_astra_pro_mcp_colabdev_web/moonveil_gpt6-astra-pro_mcp-colabdev_threejs.zip`. This is a runtime folder, not a ChatGPT Library upload. Successful cloud persistence must be verified through the Colab backup result, not inferred from the existence of that folder.
 
-The current sculpture has **194 named meshes, 219,934 editable vertices, and 282,572 triangles**. The validated GLB has 203 nodes, 25 materials, three embedded images, no external URIs, and is 8,961,480 bytes. It reloads with the same triangle count and no invalid coordinates. It is static, not rigged or animated. The portable GLB uses PBR materials and omits the web-only outline shells; it is not certified watertight or print-ready.
+## Remaining limitations
 
-The draw tree has 30 meshes including its outline batch. The tested front view uses 33 draw calls rather than 276 without changing the sculpture's triangle count. These are draw-call observations, not a claim of measured FPS on real phones. Headless timing uses SwiftShader on this low-memory VM.
-
-## Visual refinement notes
-
-The broad forehead curl and parted cheek lock now use curved, beveled volumes rather than intersecting tubular bangs. Fine surface contours replaced unstable expanded outline shells. The raised elbow/forearm and far ankle were rebuilt after failed contour experiments; their rejected passes remain documented. The shirt is longer and has shallow drape, curved lapels, matching pocket print, and scalloped cuffs. The pillow is wider, filled, and turned behind the legs. The headband and slippers were enlarged, and the overly tall head was compressed with a small relaxed tilt.
-
-`pose.js` handles head, hair, bow/headband, body, and halo differently. The halo is independent of the head tilt. Lower body vertical offsets ramp smoothly so the hem and held pillow do not rise too far. All affected surfaces, seams, and attached details receive the same posture. Normals are recomputed and duplicate-position seam normals smoothed afterward.
-
-The major remaining art work is closer face/eye/fringe likeness, more natural fine hand/finger anatomy, richer but controlled cloth folds, and less uniform rear hair. Unseen side and rear details remain an artistic interpretation of one illustration. Do not inflate the visual score because the engineering checks pass.
-
-## Reproduce validation and record real progress
-
-```sh
-export PATH=/home/admin/.nvm/versions/node/v22.23.2/bin:$PATH
-npm run build
-npm test
-node scripts/capture.mjs iteration-22 front
-node scripts/capture.mjs iteration-22 portrait
-# Inspect the saved renders with the agent's native get_image tool, then:
-node scripts/record.mjs 22 SCORE front 'Reviewed title' 'What changed and what the actual review found'
-npm run build
-python3 scripts/package.py --persist
-```
-
-Do not run the example record command until the edit/build and review actually happened. Use an honest score and record regressions. The record helper requires existing screenshot and JSON evidence. The journal refreshes every five seconds; the model itself is not hot-reloaded, so refresh the browser after a new source build.
-
-`scripts/browser.mjs` discovers `CHROME_PATH`, a matching Playwright browser, common installed Chrome locations, or the VM's existing executable at `/home/admin/.cache/ms-playwright/chromium_headless_shell-1193/chrome-linux/headless_shell`. On another machine, set `CHROME_PATH` or run `npx playwright-core install chromium`.
-
-`scripts/validate.mjs` checks geometry, batching, named parts, all five camera presets, wireframe, night mode, actual turntable motion, mouse orbit/zoom, PNG saving, GLB export and reload, 24 camera directions, desktop/mobile overflow and toolbar clearance, offline HTML startup, exceptions, and health. It writes `output/validation/report.json` plus desktop/mobile/offline screenshots. The 24 automated directions are **not** 24 visually reviewed sculpt iterations.
-
-Important regressions already fixed: the standalone build must use callback replacement functions when embedding bundled JavaScript, because `$&` in minified code otherwise corrupts the HTML. Geometric UI checks must render a frame before projecting vertices through the camera; a stale matrix produced a false failure. The turntable check polls actual motion instead of relying on a short fixed delay. The desktop test page is closed before opening the mobile page to reduce VM memory pressure.
-
-The model-only previews are in `output/iterations/iteration-21-{front,portrait,side,back}.png`. Named current copies are in `build/preview/`; each history image referenced by the manifest is retained. Other historical view angles remain in `output/iterations/` but were removed from the published preview directory to avoid clutter. The Files section and latest views precede the long journal. Every displayed artifact carries its real absolute path.
-
-## Git and delivery
-
-Use the existing model/tool-named branch. The checkpoint commits include `fc05c51` (recovered source/evidence) and `54b8229` (sculpted fringe, limbs, drape and pillow). Later rendering/UI/validation work is committed separately. Read `git log` for the final checkpoint identity rather than assuming a build deploys another service.
-
-Git identity is not globally configured. Use a per-command identity when needed:
-
-```sh
-git -c user.name='GPT-6 Astra Pro' -c user.email='gpt6-astra-pro@local.invalid' commit -m 'Describe the actual change'
-```
-
-The packaging script verifies validation success, ZIP integrity and the retained archive's SHA-256. It does not include node_modules, cached browser binaries, credentials, or unrelated project files. The local Library folder is retained storage on this VM, not an off-machine backup. The temporary tunnel may stop; the self-contained HTML and source archive do not depend on it.
-
-No permanent GitHub Pages or Cloudflare Pages deployment was performed. The available GitHub integration was discovered but not connected; the existing public Quick Tunnel was used. Do not claim a permanent deployment or a ChatGPT Library upload.
+The visual score is an estimate, not an independent image-similarity measurement or an AAA production certificate. Static pose only: no skeleton, animation clips, facial rig or game LOD chain. The portable GLB converts toon materials to standard materials, so use the offline HTML for the original illustration-style shading. No physical-phone GPU FPS was measured. Unseen angles are interpreted from a single reference; the web model is not an exact reproduction of every detail in the illustration.

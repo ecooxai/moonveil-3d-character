@@ -1,18 +1,25 @@
-# Moonveil — character atelier
+# Moonveil — Colab character studio
 
-A full-volume, static 3D reconstruction of the user-provided pajama character reference. JavaScript and Three.js generate the sculpture, hand-authored fabric and eye textures, lighting, and interactive studio. The reference was viewed directly; it was not processed into a mesh, traced with image-analysis code, or used as a billboard. No image-generation service was used.
+A hand-authored, orbitable Three.js pajama-character study based on the supplied illustration. The project runs in the `mcp_colabdev` high-RAM instance; the imported local-VM archive was checksum-verified before refinement.
 
-## Open the deliverables
+## Open the work
 
-Open `build/moonveil_gpt6-astra-pro_mcp-alagent_threejs.html` in a WebGL-capable browser for the self-contained studio. The character works without a network connection. The live build journal's images are intentionally omitted in single-file offline mode; the source archive includes the preview images separately.
+Live preview: https://lonely-demographic-earlier-comp.trycloudflare.com/
 
-Import `build/moonveil_gpt6-astra-pro_mcp-alagent_threejs.glb` into a glTF 2.0 viewer or 3D editor. It contains 194 named mesh parts, 25 materials, and embedded textures. It is a posed sculpture, not a rigged or animated production character. The web studio's fine outline treatment is not included in the portable PBR GLB.
+The preview is a temporary Cloudflare tunnel. The single-file `moonveil_gpt6-astra-pro_mcp-colabdev_threejs.html` is self-contained and works offline. The `moonveil_gpt6-astra-pro_mcp-colabdev_threejs.glb` contains the posed character with embedded textures; the ZIP contains the complete source and review evidence.
 
-Drag to orbit, scroll or pinch to zoom, and use Front, ¾, Side, Back, or Portrait presets. The toolbar provides turntable rotation, wireframe, a night backdrop, a viewport PNG, and a front-view reset. Export GLB rebuilds the portable file locally in the browser.
+Project: `/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web`  
+Build: `/build/moonveil_gpt6_astra_pro_mcp_colabdev_web`  
+Branch: `gpt6-astra-pro-mcp-colabdev-hands-legs-polish`  
+Build hash: `498789d40a9ae64c`
 
-## Build and test
+## What changed in Colab
 
-Use Node.js 22 or a compatible modern release:
+Both legs now use matching 1.400-unit thighs and 1.632-unit shins. The right leg is no longer shortened by lifting its lower geometry; both slippers have the same actual sole height. An optional joint guide displays measured posed landmarks.
+
+Both arms and hands are continuous closed meshes with five individually shaped fingers, tapered fingertips, nails, fine joint creases and clean wrists. The temple gesture and pillow grip were repositioned and reviewed in multiple views. The hair, headband, face proportions, cloth folds, pocket print, cuffs and pillow were also refined.
+
+## Run and verify
 
 ```sh
 npm ci
@@ -20,25 +27,26 @@ npm run build
 npm run serve
 ```
 
-The development server listens on `127.0.0.1:4186`. In another terminal:
+The server binds to `127.0.0.1:4186`. Set `CHROME_PATH` when the browser is not found automatically.
 
 ```sh
 npm test
-node scripts/capture.mjs iteration-22 front
+node scripts/audit-anatomy.mjs --strict
+node scripts/capture-views.mjs iteration-N front portrait raisedhand pillowhand legs side back threequarter
 ```
 
-The checks use headless Chrome. Set `CHROME_PATH` to an installed Chrome/Chromium executable, or install the matching browser with `npx playwright-core install chromium`. The existing VM's browser is discovered automatically.
+The build is checked in headless Chrome before it replaces the live files. `npm test` checks controls, desktop and mobile layouts, touch and keyboard input, actual posed leg lengths, hand topology, the optional joint guide, offline startup, PNG saving and GLB export/reload.
 
-`npm test` validates finite geometry, camera controls, wireframe, turntable, snapshots, GLB export and reload, 24 camera directions, desktop/mobile layout, toolbar clearance, and offline startup. The actual results are in `output/validation/report.json`.
+## Current review
 
-## Source map
+51 recorded edit/build/review passes. Subjective visual review: **95/100**. This is not a computed image-similarity score. The originally requested 20,000 passes were not performed or claimed.
 
-`src/geometry.js` provides lofts, sweeps, curved beveled volumes and outline helpers. `body.js`, `face.js`, `hair.js`, `costume.js`, and `accessories.js` author the sculpture. `pose.js` applies the shared posture. `materials.js` and `textures.js` create the toon materials and original vector motifs. `optimize.js` preserves the editable sculpture while making a separate material-batched draw tree. `main.js`, `index.html`, and `style.css` implement the responsive studio.
+Current checks: **46 passed, 0 failed**. The sculpture has 185 named meshes, 379,050 triangles and 27 materials. The tested full front view uses 41 draw calls. Submission timings from software-rendered headless Chrome are not a real-phone frame-rate benchmark.
 
-The optimized front view uses 33 draw calls on the tested configuration, down from 276, without reducing the sculpture's 282,572 triangles. This is not an FPS guarantee for an untested phone or GPU.
+## Controls and limitations
 
-## Review status and limitations
+Drag to orbit; scroll or pinch to zoom. With the viewport focused, arrow keys orbit, +/− zoom, and 0 resets the camera. Detail buttons show each hand and the legs; the joint guide is an inspection overlay and is excluded from the character export.
 
-This is a refinement checkpoint, not a certified 95/100 or AAA-quality completion. The journal records actual reviewed edit/render or test passes and their subjective scores, including rejected regressions. The requested 20,000 visual iterations have not been completed. The unseen rear and side details are artistic interpretations of one reference, and the face, hair transitions, hands and cloth still have room for more detailed sculpting.
+This is a static posed sculpture, not a skinned avatar or animation rig. Unseen sides are an artistic interpretation. The GLB uses standard materials for portability and may shade differently from the web viewer's toon rendering. The entire character has not been certified as a single watertight 3D-printable object; the closed-mesh audit specifically covers the two continuous arm/hand surfaces.
 
-See `docs/HANDOFF.md` for environment recovery, paths, the current branch, and the next refinement work. The reference character's ownership is not changed by this reconstruction.
+See `docs/HANDOFF.md`, `docs/migration.json`, `output/validation/report.json`, and `output/validation/anatomy-audit.json` for continuation context and actual evidence.

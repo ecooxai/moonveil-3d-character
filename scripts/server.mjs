@@ -11,7 +11,7 @@ const server=http.createServer(async(req,res)=>{
  if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end('Read-only preview.');return;}
  try{
   const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
-  if(pathname==='/health'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify({ok:true,project:'moonveil_gpt6_astra_pro_mcp_alagent_web'}));return;}
+  if(pathname==='/health'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify({ok:true,project:'moonveil_gpt6_astra_pro_mcp_colabdev_web'}));return;}
   const target=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
   if(!target.startsWith(root+path.sep)||pathname.split('/').some(x=>x.startsWith('.'))){res.writeHead(403);res.end('Forbidden');return;}
   const actual=await realpath(target);if(!actual.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}

@@ -1,0 +1,117 @@
+{
+  "tag": "iteration-49",
+  "view": "pillowhand",
+  "stats": {
+    "buildHash": "2a6e847a520174bb",
+    "meshes": 185,
+    "vertices": 296896,
+    "triangles": 379050,
+    "materials": 27,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1943310499191284,
+        0.01600000075995922,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.063660144805908,
+        6.837700102021289,
+        0.8975655288696289
+      ],
+      "size": [
+        3.2579911947250366,
+        6.82170010126133,
+        1.5876603053406981
+      ]
+    },
+    "legMeasurements": {
+      "legs": [
+        {
+          "side": "right",
+          "hip": [
+            -0.245,
+            3.15,
+            -0.015
+          ],
+          "knee": [
+            -0.23987901999598304,
+            1.7603522443644888,
+            0.1548613870807175
+          ],
+          "ankle": [
+            -0.234,
+            0.165,
+            -0.189
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165,
+          "soleHeight": 0.01600000075995922
+        },
+        {
+          "side": "left",
+          "hip": [
+            0.23,
+            3.15,
+            0.065
+          ],
+          "knee": [
+            0.13641857070149518,
+            1.7873630904583568,
+            0.37234861126292557
+          ],
+          "ankle": [
+            0.025,
+            0.165,
+            0.51
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165,
+          "soleHeight": 0.01600000075995922
+        }
+      ],
+      "soleHeightDifference": 0,
+      "maximumSegmentDifference": 0,
+      "ankleHeightDifference": 0
+    },
+    "batching": {
+      "inputMeshes": 251,
+      "drawMeshes": 36,
+      "method": "Exact material batching with baked outline extrusion"
+    },
+    "drawTree": {
+      "meshes": 34,
+      "vertices": 206181,
+      "triangles": 379050,
+      "materials": 27,
+      "badVertices": 0,
+      "bounds": {
+        "min": [
+          -1.1988309621810913,
+          0.01400067564100027,
+          -0.6904951930046082
+        ],
+        "max": [
+          2.063660144805908,
+          6.832502365112305,
+          0.8981654644012451
+        ],
+        "size": [
+          3.2624911069869995,
+          6.818501689471304,
+          1.5886606574058533
+        ]
+      }
+    },
+    "render": {
+      "frame": 10,
+      "calls": 14,
+      "triangles": 535432,
+      "points": 0,
+      "lines": 0
+    }
+  },
+  "errors": []
+}

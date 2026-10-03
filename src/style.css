@@ -32,3 +32,13 @@
 
 .anatomy-toolbar{margin:18px 6.2% 0;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line)}.anatomy-toolbar p{font:23px var(--serif);margin:9px 0 0;letter-spacing:-.03em}.detail-buttons{display:flex;gap:8px;flex-wrap:wrap}.detail-buttons button{padding:13px 16px;background:#f0ebf7;border:1px solid #e4ddec;border-radius:7px;color:#7b688f;font-size:11px;min-height:44px}.detail-buttons button.active{background:#8170af;color:white}.paired-lengths{display:flex;flex-direction:column;text-align:right;gap:6px}.paired-lengths span{font-size:8px;color:#9583a7;letter-spacing:.12em}.paired-lengths b{font:23px var(--serif);font-weight:400}.paired-lengths small{font-size:8px;color:#aaa0b4}.render-only .anatomy-toolbar{display:none}.latest-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:760px){.anatomy-toolbar{margin:10px 6% 0;flex-wrap:wrap;gap:16px}.anatomy-toolbar>div:first-child{flex:1}.anatomy-toolbar p{font-size:20px}.detail-buttons{width:100%;order:3}.detail-buttons button{flex:1;padding:12px 9px;font-size:10px}.paired-lengths b{font-size:20px}.latest-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.anatomy-toolbar{flex-wrap:wrap}.measurement-status{flex-basis:100%;margin:0;color:#8e829e;font-size:10px;line-height:1.5}.detail-buttons{flex-wrap:wrap}.detail-buttons button[aria-pressed=true]{background:#e7def2;color:#68547f}#guide-button{white-space:nowrap}@media(max-width:760px){.measurement-status{font-size:9px}.paired-lengths{margin-left:0}.detail-buttons{gap:6px}}
+
+#viewport canvas:focus-visible{outline:2px solid #a493c0;outline-offset:-4px}
+
+.ui-icon{width:16px;height:16px;display:inline-block;vertical-align:middle;flex-shrink:0}.icon-button .ui-icon{width:19px;height:19px}.brand-mark .ui-icon{width:34px;height:38px;stroke-width:1}.footer-brand .ui-icon{width:18px;margin-right:5px}.button .ui-icon,.detail-buttons .ui-icon,.download-card h3 .ui-icon,.text-button .ui-icon{width:12px;height:12px}.paired-lengths b{font-variant-numeric:tabular-nums}
+
+.anatomy-toolbar .measurement-status{font:10px/1.5 var(--sans);letter-spacing:0;margin:0;grid-column:1/-1;order:9;flex-basis:100%;color:#92869f}.anatomy-toolbar .detail-buttons button{white-space:nowrap}@media(max-width:760px){.anatomy-toolbar .detail-buttons{order:3;grid-column:1/-1}.anatomy-toolbar .measurement-status{font-size:10px}.anatomy-toolbar .detail-buttons .ui-icon{display:none}}
+
+.stage.detail-view #viewport{bottom:78px}.render-only .stage.detail-view #viewport{bottom:0}

@@ -1,10 +1,10 @@
 {
   "projectPath": "/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web",
   "buildPath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web",
-  "visualScore": 93,
-  "review": "Replaced height-dependent texture distortion with consistent physical-scale fabric coordinates and aligned the breast-pocket print to the shirt. Front, garment close-up and rear reviews show a coherent cotton pattern. The stronger global cel-lighting experiment was not adopted because it dulled the pale blue and white fabrics.",
-  "status": "Refining reference likeness",
-  "testsSummary": "Chrome: 0 JavaScript errors; 0 invalid coordinates",
+  "visualScore": 95,
+  "review": "Reviewed the complete character, both hands, matched legs, side/back views and the repaired desktop/mobile studio. Close-up controls now stay clear of the slippers. All 46 checks pass, including actual posed segment lengths, sole heights, connected hand topology, touch and keyboard controls, offline rendering and GLB reload. The 95/100 score is a subjective visual review, not an image-similarity measurement or an AAA certification.",
+  "status": "Reviewed Colab checkpoint",
+  "testsSummary": "46 checks passed \u00b7 equal leg segments \u00b7 closed hand meshes",
   "iterations": [
     {
       "iteration": 1,
@@ -419,50 +419,144 @@
       "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-outfit.png",
       "buildHash": "47a0df907538946e",
       "reviewedAt": "2026-10-03T07:55:35.813Z"
+    },
+    {
+      "iteration": 44,
+      "score": 94,
+      "title": "Readable knees, fingers and warm skin shading",
+      "note": "Adopted restrained tonal steps only on the skin, leaving the blue pajamas and white pillow luminous. The updated knee and ankle shapes are easier to read, and close-up review confirms clean wrist and finger contours. The temple gesture still sits slightly low relative to the reference, so its placement is refined next.",
+      "image": "./preview/iteration-44-legs.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-44-legs.png",
+      "buildHash": "d31a7972d01acd2b",
+      "reviewedAt": "2026-10-03T07:59:00.484Z"
+    },
+    {
+      "iteration": 45,
+      "score": 94,
+      "title": "A higher temple gesture and inspectable leg joints",
+      "note": "Raised the right-hand gesture toward the headband while preserving continuous arm and hand geometry. The leg correction is now inspectable through measured posed landmarks and an optional joint guide, not a hardcoded size label. Both hands remain closed manifold surfaces.",
+      "image": "./preview/iteration-45-front.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-45-front.png",
+      "buildHash": "ab79f71128a956d1",
+      "reviewedAt": "2026-10-03T08:01:55.982Z"
+    },
+    {
+      "iteration": 46,
+      "score": 94,
+      "title": "Filled pillow folds and softer outer hair",
+      "note": "Refined the pillow shading and sewn edge so its filled volume and tension folds read from three-quarter view. Added fine tapered flyaways to soften the main hair mass. The right hand still hovers slightly away from the temple in the oblique view, so its contact placement is adjusted next.",
+      "image": "./preview/iteration-46-threequarter.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-46-threequarter.png",
+      "buildHash": "fbb28a44a598bfc1",
+      "reviewedAt": "2026-10-03T08:05:42.625Z"
+    },
+    {
+      "iteration": 47,
+      "score": 94,
+      "title": "Natural temple contact and keyboard control",
+      "note": "Moved the raised hand inward and back so the gesture meets the temple in the three-quarter view rather than hovering away from the head. Refined detail-camera framing and added keyboard orbit, zoom and reset. Hand topology and bilateral leg dimensions remain unchanged in quality.",
+      "image": "./preview/iteration-47-raisedhand3q.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-47-raisedhand3q.png",
+      "buildHash": "b4f36025fd8525aa",
+      "reviewedAt": "2026-10-03T08:08:59.306Z"
+    },
+    {
+      "iteration": 48,
+      "score": 94,
+      "title": "Detailed fingers and measured ground contact",
+      "note": "Added subtle palmar joint creases and measured the actual slipper sole surfaces. All 42 expanded browser, anatomy, touch, keyboard, offline and GLB checks passed. Desktop and mobile screenshots exposed missing font glyphs in the controls; those are corrected before the checkpoint is packaged.",
+      "image": "./preview/iteration-48-raisedhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-48-raisedhand.png",
+      "buildHash": "8c17eaf8370a89db",
+      "reviewedAt": "2026-10-03T08:13:21.179Z"
+    },
+    {
+      "iteration": 49,
+      "score": 94,
+      "title": "Font-independent studio controls",
+      "note": "Replaced missing control glyphs with embedded vector icons and passed 43 checks. Visual mobile review found that detail selection could leave the model above the screen, and the measurement note inherited a large heading font. Navigation and note sizing are corrected next.",
+      "image": "./preview/iteration-49-front.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-49-front.png",
+      "buildHash": "2a6e847a520174bb",
+      "reviewedAt": "2026-10-03T08:19:05.051Z"
+    },
+    {
+      "iteration": 50,
+      "score": 94,
+      "title": "Clear mobile navigation and measured anatomy panel",
+      "note": "All 45 checks passed and the main mobile view now shows the complete character with working vector controls. Detail buttons return to the model, and measurement text is compact. The enlarged leg-guide review revealed that its camera controls still covered part of the slippers, so close-up viewports receive their own reserved control area.",
+      "image": "./preview/iteration-50-front.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-50-front.png",
+      "buildHash": "95ef07a0755f2298",
+      "reviewedAt": "2026-10-03T08:29:01.629Z"
+    },
+    {
+      "iteration": 51,
+      "score": 95,
+      "title": "Reviewed Colab character and anatomy checkpoint",
+      "note": "Reviewed the complete character, both hands, matched legs, side/back views and the repaired desktop/mobile studio. Close-up controls now stay clear of the slippers. All 46 checks pass, including actual posed segment lengths, sole heights, connected hand topology, touch and keyboard controls, offline rendering and GLB reload. The 95/100 score is a subjective visual review, not an image-similarity measurement or an AAA certification.",
+      "image": "./preview/iteration-51-front.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-51-front.png",
+      "buildHash": "498789d40a9ae64c",
+      "reviewedAt": "2026-10-03T08:33:45.504Z"
     }
   ],
   "requestedIterations": 20000,
   "requestedGoal": 95,
   "environment": {
-    "active": "mcp_colabdev dev highram",
+    "active": "mcp_colabdev dev / highram",
     "migrationChecksumVerified": true,
     "graphics": "Verified SwiftShader WebGL"
   },
   "latestViews": [
     {
-      "url": "./preview/iteration-43-front.png",
-      "label": "Full character · review 43",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-front.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-front.png",
+      "label": "Full character",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-front.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-39-raisedhand.png",
-      "label": "Right hand · temple · review 39",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-39-raisedhand.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-raisedhand.png",
+      "label": "Right hand / temple gesture",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-raisedhand.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-39-pillowhand.png",
-      "label": "Left hand · pillow · review 39",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-39-pillowhand.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-pillowhand.png",
+      "label": "Left hand / pillow grip",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-pillowhand.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-42-legs.png",
-      "label": "Matched leg proportions · review 42",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-42-legs.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-legs.png",
+      "label": "Matched legs and grounded slippers",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-legs.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-42-portrait.png",
-      "label": "Portrait · review 42",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-42-portrait.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-portrait.png",
+      "label": "Portrait / face, bow and halo",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-portrait.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-41-side.png",
-      "label": "Side view · review 41",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-41-side.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-threequarter.png",
+      "label": "Three-quarter volume",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-threequarter.png",
+      "iteration": 51
     },
     {
-      "url": "./preview/iteration-43-back.png",
-      "label": "Rear hair and costume · review 43",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-back.png"
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-side.png",
+      "label": "Side profile",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-side.png",
+      "iteration": 51
+    },
+    {
+      "url": "./preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-back.png",
+      "label": "Back / flowing hair and pillow",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/moonveil_gpt6-astra-pro_mcp-colabdev_threejs-back.png",
+      "iteration": 51
     }
-  ]
+  ],
+  "qualityNote": "Subjective visual review; not a measured reference-similarity percentage or an AAA production certification."
 }

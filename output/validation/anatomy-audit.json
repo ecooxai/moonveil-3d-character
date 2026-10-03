@@ -28,14 +28,20 @@
   "hands": [
     {
       "hand": "raised",
-      "vertices": 14972,
-      "triangles": 29940,
+      "components": 1,
+      "fingerCount": 5,
+      "eulerCharacteristic": 2,
+      "vertices": 15654,
+      "triangles": 31304,
       "repeatedIndexFaces": 0,
       "boundaryEdges": 0,
       "nonmanifoldEdges": 0
     },
     {
       "hand": "holding",
+      "components": 1,
+      "fingerCount": 5,
+      "eulerCharacteristic": 2,
       "vertices": 12865,
       "triangles": 25726,
       "repeatedIndexFaces": 0,
@@ -43,5 +49,7 @@
       "nonmanifoldEdges": 0
     }
   ],
+  "geometryHash": "687aebf70aa89373b98f4fa4372b532b5e81a76305be13d123094af818c228c9",
+  "checkedAt": "2026-10-03T09:39:55.233Z",
   "passed": true
 }

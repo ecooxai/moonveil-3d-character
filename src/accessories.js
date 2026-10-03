@@ -52,7 +52,8 @@ export function buildAccessories(root,M){
  const BC=new THREE.CubicBezierCurve3(B,V([1.945,1.893,.018]),V([1.010,.903,-.068]),C);
  const DC=new THREE.CubicBezierCurve3(D,V([.165,1.409,-.360]),V([.800,.863,-.137]),C);
  const AD=new THREE.CubicBezierCurve3(A,V([1.060,3.130,.220]),V([-.304,1.963,-.461]),D);
- const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.emissiveIntensity=.40;pillowFront.gradientMap=M.skin.gradientMap;
+ const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.color.set('#f8fcff');pillowFront.emissive.set('#e3ecff');pillowFront.emissiveIntensity=.30;
+ const pillowRamp=new THREE.DataTexture(new Uint8Array([60,145,224,248,255]),5,1,THREE.RedFormat);pillowRamp.needsUpdate=true;pillowRamp.minFilter=pillowRamp.magFilter=THREE.NearestFilter;pillowFront.gradientMap=pillowRamp;
  const pillowPoint=(u,v,side)=>{
   const q=1-v,base=A.clone().multiplyScalar((1-u)*(1-q)).addScaledVector(B,u*(1-q)).addScaledVector(C,u*q).addScaledVector(D,(1-u)*q);
   const p=AB.getPoint(u).multiplyScalar(1-q).addScaledVector(DC.getPoint(u),q).addScaledVector(AD.getPoint(q),1-u).addScaledVector(BC.getPoint(q),u).sub(base);
@@ -69,7 +70,7 @@ export function buildAccessories(root,M){
   mesh(accessories,side>0?'Pillow inflated front':'Pillow inflated reverse',g,side>0?pillowFront:M.whiteShade,.003);
  }
  const seam=[];for(const [edge,reverse]of[[AB,false],[BC,false],[DC,true],[AD,true]])for(let i=0;i<32;i++)seam.push(edge.getPoint(reverse?1-i/32:i/32).toArray());
- line(accessories,'Pillow continuous sewn edge',seam,.009,M.whiteShade,{steps:160,sides:8,closed:true});
+ line(accessories,'Pillow continuous sewn edge',seam,.006,M.whiteShade,{steps:160,sides:8,closed:true});
  accessories.traverse(o=>{if(o.isMesh&&/bow|headband/i.test(o.name))o.receiveShadow=false;});
  return {accessories,halo};
 }

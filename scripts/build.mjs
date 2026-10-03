@@ -8,6 +8,7 @@ import {chromium} from 'playwright-core';
 import {browserOptions} from './browser.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 execFileSync(process.execPath,[path.join(root,'scripts/bake-hands.mjs')],{cwd:root,stdio:'inherit'});
+execFileSync(process.execPath,[path.join(root,'scripts/audit-anatomy.mjs'),'--strict'],{cwd:root,stdio:'inherit'});
 const out=path.join(root,'build'),stage=path.join(root,'.cache/staged-build');
 await mkdir(out,{recursive:true});await mkdir(path.join(out,'preview'),{recursive:true});await mkdir(stage,{recursive:true});
 const digest=createHash('sha256');for(const f of (await readdir(path.join(root,'src'))).sort())digest.update(await readFile(path.join(root,'src',f)));const sourceHash=digest.digest('hex').slice(0,16);
@@ -25,7 +26,7 @@ try{
  await page.goto(pathToFileURL(candidate).href,{waitUntil:'load',timeout:60000});
  await page.waitForFunction(()=>window.atelier?.ready||window.atelier?.error,null,{timeout:45000});
  smoke=await page.evaluate(()=>({ready:window.atelier.ready,error:window.atelier.error,buildHash:window.MOONVEIL_BUILD,stats:window.atelier.ready?window.atelier.validate():null}));
- if(!smoke.ready||smoke.error||exceptions.length||smoke.stats.badVertices||smoke.buildHash!==sourceHash)throw new Error('Staged Chrome startup failed: '+JSON.stringify({smoke,exceptions}));
+ if(!smoke.ready||smoke.error||exceptions.length||smoke.stats.badVertices||smoke.stats.legMeasurements.maximumSegmentDifference>1e-8||smoke.buildHash!==sourceHash)throw new Error('Staged Chrome startup failed: '+JSON.stringify({smoke,exceptions}));
 }finally{await browser.close();}
 const report={sourceHash,ready:smoke.ready,badVertices:smoke.stats.badVertices,triangles:smoke.stats.triangles,exceptions,passed:true};
 await mkdir(path.join(root,'output/validation'),{recursive:true});await writeFile(path.join(root,'output/validation/build-smoke.json'),JSON.stringify(report,null,2));

@@ -1,0 +1,114 @@
+{
+  "tag": "iteration-46",
+  "view": "side",
+  "stats": {
+    "buildHash": "fbb28a44a598bfc1",
+    "meshes": 177,
+    "vertices": 295882,
+    "triangles": 377310,
+    "materials": 27,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1942780017852783,
+        0.01600000075995922,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.063660144805908,
+        6.837700102021289,
+        0.8975655288696289
+      ],
+      "size": [
+        3.2579381465911865,
+        6.82170010126133,
+        1.5876603053406981
+      ]
+    },
+    "legMeasurements": {
+      "legs": [
+        {
+          "side": "right",
+          "hip": [
+            -0.245,
+            3.15,
+            -0.015
+          ],
+          "knee": [
+            -0.23987901999598304,
+            1.7603522443644888,
+            0.1548613870807175
+          ],
+          "ankle": [
+            -0.234,
+            0.165,
+            -0.189
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165
+        },
+        {
+          "side": "left",
+          "hip": [
+            0.23,
+            3.15,
+            0.065
+          ],
+          "knee": [
+            0.13641857070149518,
+            1.7873630904583568,
+            0.37234861126292557
+          ],
+          "ankle": [
+            0.025,
+            0.165,
+            0.51
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165
+        }
+      ],
+      "maximumSegmentDifference": 0,
+      "ankleHeightDifference": 0
+    },
+    "batching": {
+      "inputMeshes": 243,
+      "drawMeshes": 35,
+      "method": "Exact material batching with baked outline extrusion"
+    },
+    "drawTree": {
+      "meshes": 33,
+      "vertices": 205167,
+      "triangles": 377310,
+      "materials": 27,
+      "badVertices": 0,
+      "bounds": {
+        "min": [
+          -1.1987780332565308,
+          0.01400067564100027,
+          -0.6904951930046082
+        ],
+        "max": [
+          2.063660144805908,
+          6.832502365112305,
+          0.8981654644012451
+        ],
+        "size": [
+          3.262438178062439,
+          6.818501689471304,
+          1.5886606574058533
+        ]
+      }
+    },
+    "render": {
+      "frame": 10,
+      "calls": 40,
+      "triangles": 628114,
+      "points": 0,
+      "lines": 0
+    }
+  },
+  "errors": []
+}

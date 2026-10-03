@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-03T04:25:55.991Z",
+  "checkedAt": "2026-10-03T08:31:29.759Z",
   "checks": [
     {
       "name": "Geometry contains no invalid coordinates",
@@ -9,9 +9,9 @@
       "name": "The model has real depth and complete volume",
       "passed": true,
       "detail": [
-        3.2626965045928955,
-        6.822700102021289,
-        1.58167680336993
+        3.2579911947250366,
+        6.82170010126133,
+        1.5876603053406981
       ]
     },
     {
@@ -22,13 +22,123 @@
       "name": "Batched drawing uses fewer than 40 meshes",
       "passed": true,
       "detail": {
-        "inputMeshes": 273,
-        "drawMeshes": 30,
+        "inputMeshes": 251,
+        "drawMeshes": 36,
         "method": "Exact material batching with baked outline extrusion"
       }
     },
     {
       "name": "Semantic character parts remain editable",
+      "passed": true
+    },
+    {
+      "name": "Tests match the current verified build",
+      "passed": true,
+      "detail": "498789d40a9ae64c"
+    },
+    {
+      "name": "Posed thighs have equal lengths",
+      "passed": true,
+      "detail": {
+        "right": 1.4,
+        "left": 1.4
+      }
+    },
+    {
+      "name": "Posed shins have equal lengths",
+      "passed": true,
+      "detail": {
+        "right": 1.632,
+        "left": 1.632
+      }
+    },
+    {
+      "name": "Both ankles share the same ground-relative height",
+      "passed": true,
+      "detail": [
+        {
+          "side": "right",
+          "ankleHeight": 0.165
+        },
+        {
+          "side": "left",
+          "ankleHeight": 0.165
+        }
+      ]
+    },
+    {
+      "name": "Both actual slipper soles share the same ground plane",
+      "passed": true,
+      "detail": [
+        {
+          "side": "right",
+          "soleHeight": 0.01600000075995922
+        },
+        {
+          "side": "left",
+          "soleHeight": 0.01600000075995922
+        }
+      ]
+    },
+    {
+      "name": "Both hands are single closed manifold surfaces with five digits",
+      "passed": true,
+      "detail": [
+        {
+          "hand": "raised",
+          "components": 1,
+          "fingerCount": 5,
+          "eulerCharacteristic": 2,
+          "vertices": 15654,
+          "triangles": 31304,
+          "repeatedIndexFaces": 0,
+          "boundaryEdges": 0,
+          "nonmanifoldEdges": 0
+        },
+        {
+          "hand": "holding",
+          "components": 1,
+          "fingerCount": 5,
+          "eulerCharacteristic": 2,
+          "vertices": 12865,
+          "triangles": 25726,
+          "repeatedIndexFaces": 0,
+          "boundaryEdges": 0,
+          "nonmanifoldEdges": 0
+        }
+      ]
+    },
+    {
+      "name": "Joint guide displays measured landmarks and toggles off",
+      "passed": true
+    },
+    {
+      "name": "Leg-detail controls leave both slippers visible",
+      "passed": true,
+      "detail": {
+        "lowestFootPixel": 786.7595987509616,
+        "controlsTop": 828,
+        "clearance": 41.24040124903843
+      }
+    },
+    {
+      "name": "Inspection guide is excluded from the exported sculpture",
+      "passed": true
+    },
+    {
+      "name": "Anatomy detail preset: raisedhand",
+      "passed": true
+    },
+    {
+      "name": "Anatomy detail preset: pillowhand",
+      "passed": true
+    },
+    {
+      "name": "Anatomy detail preset: legs",
+      "passed": true
+    },
+    {
+      "name": "All viewport tools use font-independent vector icons",
       "passed": true
     },
     {
@@ -81,27 +191,31 @@
       "passed": true
     },
     {
+      "name": "Keyboard orbit, zoom and reset work",
+      "passed": true
+    },
+    {
       "name": "Snapshot produces a PNG file",
       "passed": true,
-      "detail": 153206
+      "detail": 146730
     },
     {
       "name": "Desktop camera controls do not cover the feet",
       "passed": true,
       "detail": {
-        "lowestFootPixel": 802.988345314208,
-        "controlsTop": 831,
-        "clearance": 28.011654685791996
+        "lowestFootPixel": 657.9763953451068,
+        "controlsTop": 685,
+        "clearance": 27.023604654893234
       }
     },
     {
       "name": "GLB export completes",
       "passed": true,
       "detail": {
-        "bytes": 8961480,
-        "nodes": 203,
-        "meshes": 194,
-        "materials": 25,
+        "bytes": 11923888,
+        "nodes": 196,
+        "meshes": 185,
+        "materials": 27,
         "images": 3,
         "externalUris": 0
       }
@@ -110,26 +224,26 @@
       "name": "Exported GLB reloads as full geometry",
       "passed": true,
       "detail": {
-        "meshes": 194,
-        "vertices": 219934,
-        "triangles": 282572,
-        "materials": 25,
+        "meshes": 185,
+        "vertices": 296896,
+        "triangles": 379050,
+        "materials": 27,
         "badVertices": 0,
         "bounds": {
           "min": [
-            -1.1941087245941162,
-            0.015,
+            -1.1943310499191284,
+            0.01600000075995922,
             -0.6900947764710692
           ],
           "max": [
-            2.0685877799987793,
+            2.063660144805908,
             6.837700102021289,
-            0.8915820268988609
+            0.8975655288696289
           ],
           "size": [
-            3.2626965045928955,
-            6.822700102021289,
-            1.58167680336993
+            3.2579911947250366,
+            6.82170010126133,
+            1.5876603053406981
           ]
         },
         "animations": 0
@@ -141,11 +255,11 @@
       "detail": {
         "angles": 24,
         "submissionMs": {
-          "min": 0.10000002384185791,
-          "max": 2.700000047683716,
-          "mean": 0.6208333323399226
+          "min": 0.900000000372529,
+          "max": 2.099999999627471,
+          "mean": 1.1499999999844779
         },
-        "drawCalls": 33,
+        "drawCalls": 41,
         "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
       }
     },
@@ -162,19 +276,41 @@
       "passed": true,
       "detail": {
         "x": 14.25,
-        "y": 117,
+        "y": 116,
         "width": 361.5,
         "height": 698
+      }
+    },
+    {
+      "name": "Emulated touch drag orbits the mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "Mobile anatomy controls are visible and usable",
+      "passed": true
+    },
+    {
+      "name": "Mobile model stage is visible, not scrolled off screen",
+      "passed": true,
+      "detail": {
+        "x": 13.25,
+        "y": 115,
+        "width": 363.5,
+        "height": 700
       }
     },
     {
       "name": "Mobile camera controls do not cover the feet",
       "passed": true,
       "detail": {
-        "lowestFootPixel": 721.4489370503117,
-        "controlsTop": 743,
-        "clearance": 21.551062949688344
+        "lowestFootPixel": 721.1162926340576,
+        "controlsTop": 742,
+        "clearance": 20.883707365942428
       }
+    },
+    {
+      "name": "Mobile detail buttons bring the model back into view",
+      "passed": true
     },
     {
       "name": "Standalone HTML renders without network access",
@@ -190,90 +326,142 @@
       "passed": true
     }
   ],
-  "passed": 28,
+  "passed": 46,
   "failed": 0,
   "stats": {
-    "meshes": 194,
-    "vertices": 219934,
-    "triangles": 282572,
-    "materials": 25,
+    "meshes": 185,
+    "vertices": 296896,
+    "triangles": 379050,
+    "materials": 27,
     "badVertices": 0,
     "bounds": {
       "min": [
-        -1.1941087245941162,
-        0.015,
+        -1.1943310499191284,
+        0.01600000075995922,
         -0.6900947764710692
       ],
       "max": [
-        2.0685877799987793,
+        2.063660144805908,
         6.837700102021289,
-        0.8915820268988609
+        0.8975655288696289
       ],
       "size": [
-        3.2626965045928955,
-        6.822700102021289,
-        1.58167680336993
+        3.2579911947250366,
+        6.82170010126133,
+        1.5876603053406981
       ]
     },
+    "legMeasurements": {
+      "legs": [
+        {
+          "side": "right",
+          "hip": [
+            -0.245,
+            3.15,
+            -0.015
+          ],
+          "knee": [
+            -0.23987901999598304,
+            1.7603522443644888,
+            0.1548613870807175
+          ],
+          "ankle": [
+            -0.234,
+            0.165,
+            -0.189
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165,
+          "soleHeight": 0.01600000075995922
+        },
+        {
+          "side": "left",
+          "hip": [
+            0.23,
+            3.15,
+            0.065
+          ],
+          "knee": [
+            0.13641857070149518,
+            1.7873630904583568,
+            0.37234861126292557
+          ],
+          "ankle": [
+            0.025,
+            0.165,
+            0.51
+          ],
+          "thigh": 1.4,
+          "shin": 1.632,
+          "ankleHeight": 0.165,
+          "soleHeight": 0.01600000075995922
+        }
+      ],
+      "soleHeightDifference": 0,
+      "maximumSegmentDifference": 0,
+      "ankleHeightDifference": 0
+    },
     "batching": {
-      "inputMeshes": 273,
-      "drawMeshes": 30,
+      "inputMeshes": 251,
+      "drawMeshes": 36,
       "method": "Exact material batching with baked outline extrusion"
     },
     "drawTree": {
-      "meshes": 29,
-      "vertices": 157410,
-      "triangles": 282572,
-      "materials": 25,
+      "meshes": 34,
+      "vertices": 206181,
+      "triangles": 379050,
+      "materials": 27,
       "badVertices": 0,
       "bounds": {
         "min": [
-          -1.199108362197876,
-          0.014163997955620289,
+          -1.1988309621810913,
+          0.01400067564100027,
           -0.6904951930046082
         ],
         "max": [
-          2.0685877799987793,
+          2.063660144805908,
           6.832502365112305,
-          0.896989107131958
+          0.8981654644012451
         ],
         "size": [
-          3.2676961421966553,
-          6.818338367156684,
-          1.5874843001365662
+          3.2624911069869995,
+          6.818501689471304,
+          1.5886606574058533
         ]
       }
-    }
+    },
+    "buildHash": "498789d40a9ae64c"
   },
   "exportInfo": {
-    "bytes": 8961480,
-    "nodes": 203,
-    "meshes": 194,
-    "materials": 25,
+    "bytes": 11923888,
+    "nodes": 196,
+    "meshes": 185,
+    "materials": 27,
     "images": 3,
     "externalUris": 0
   },
   "roundTrip": {
-    "meshes": 194,
-    "vertices": 219934,
-    "triangles": 282572,
-    "materials": 25,
+    "meshes": 185,
+    "vertices": 296896,
+    "triangles": 379050,
+    "materials": 27,
     "badVertices": 0,
     "bounds": {
       "min": [
-        -1.1941087245941162,
-        0.015,
+        -1.1943310499191284,
+        0.01600000075995922,
         -0.6900947764710692
       ],
       "max": [
-        2.0685877799987793,
+        2.063660144805908,
         6.837700102021289,
-        0.8915820268988609
+        0.8975655288696289
       ],
       "size": [
-        3.2626965045928955,
-        6.822700102021289,
-        1.58167680336993
+        3.2579911947250366,
+        6.82170010126133,
+        1.5876603053406981
       ]
     },
     "animations": 0
@@ -281,11 +469,11 @@
   "benchmark": {
     "angles": 24,
     "submissionMs": {
-      "min": 0.10000002384185791,
-      "max": 2.700000047683716,
-      "mean": 0.6208333323399226
+      "min": 0.900000000372529,
+      "max": 2.099999999627471,
+      "mean": 1.1499999999844779
     },
-    "drawCalls": 33,
+    "drawCalls": 41,
     "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
   },
   "errors": [],

@@ -104,6 +104,9 @@ export function buildHair(root,M){
  // A few broad sculpted highlights follow the flow, rather than dense painted noise.
  sweep(hair,'Fine cheek-side curl',[[-.45,5.73,.119],[-.562,5.40,.073],[-.60,5.168,.093],[-.533,5.019,.145],[-.467,5.014,.161]],[.023,.025,.021,.012,.001],[.012,.013,.010,.007,.001],M.hairLight,{steps:56,sides:12,outline:.002});
  sweep(hair,'Floating fine temple strand',[[-.46,5.70,.029],[-.60,5.341,.020],[-.643,5.147,.063],[-.574,4.997,.101]],[.012,.012,.009,.001],[.008,.007,.006,.001],M.hair,{steps:48,sides:10,outline:.001});
+ // Tapered flyaways soften the solid outer lock without flattening it into a card.
+ sweep(hair,'Fine right temple flyaway',[[.45,5.80,.09],[.57,5.48,.12],[.59,5.12,.13],[.68,4.81,.10],[.94,4.61,.055],[1.16,4.58,.045]],[.007,.011,.009,.013,.009,.0005],[.005,.006,.005,.007,.005,.0004],M.hairLight,{steps:86,sides:10,outline:.001});
+ sweep(hair,'Tapered rear outer filament',[[-.28,5.92,-.37],[-.49,5.34,-.46],[-.57,4.72,-.47],[-.56,4.21,-.42],[-.70,3.84,-.32],[-.79,3.76,-.24]],[.004,.012,.013,.015,.010,.0005],[.004,.007,.007,.008,.005,.0004],M.hair,{steps:86,sides:10,outline:.001});
  // Hair uses soft directional shading; noisy self-shadow pixels obscure its authored strand flow.
  hair.traverse(o=>{if(o.isMesh)o.receiveShadow=false;});
  return hair;

@@ -26,6 +26,13 @@ export function buildHands(body,M){
    const across=new THREE.Vector3().crossVectors(direction,normal).normalize(),basis=new THREE.Matrix4().makeBasis(across,direction,normal);
    p.addScaledVector(normal,finger.radii.at(-1)*1.01);
    const nail=ellipsoid(group,finger.name+' nail',p.toArray(),[finger.radii.at(-1)*.66,.019,.0028],nails,0,18);nail.quaternion.setFromRotationMatrix(basis);nail.receiveShadow=false;nail.castShadow=false;
+   if(key==='raised'&&finger.name!=='Thumb')for(const at of [.36,.66]){
+    const joint=curve.getPoint(at),d=curve.getTangent(at).normalize(),normal=new THREE.Vector3(0,0,1).addScaledVector(d,-d.z).normalize(),across=new THREE.Vector3().crossVectors(d,normal).normalize();
+    const f=at*(finger.radii.length-1),i=Math.min(finger.radii.length-2,Math.floor(f)),r=THREE.MathUtils.lerp(finger.radii[i],finger.radii[i+1],f-i);
+    joint.addScaledVector(normal,r+.0006);
+    const fold=[joint.clone().addScaledVector(across,-r*.45),joint.clone().addScaledVector(d,-.0013),joint.clone().addScaledVector(across,r*.45)].map(p=>p.toArray());
+    const crease=line(group,finger.name+' soft palmar joint '+at,fold,.0005,M.skinShade,{steps:12,sides:5});crease.castShadow=false;crease.receiveShadow=false;
+   }
    if(key==='holding'&&finger.name!=='Thumb'){const joint=curve.getPoint(.34),d=curve.getTangent(.34).normalize(),n=new THREE.Vector3(0,0,-1).addScaledVector(d,d.z).normalize(),cross=new THREE.Vector3().crossVectors(d,n).normalize();joint.addScaledVector(n,finger.radii[1]+.0004);line(group,finger.name+' knuckle fold',[joint.clone().addScaledVector(cross,-.009).toArray(),joint.clone().addScaledVector(d,-.002).toArray(),joint.clone().addScaledVector(cross,.008).toArray()],.0007,M.skinShade,{steps:12,sides:5});}
   }
   if(key==='raised'){

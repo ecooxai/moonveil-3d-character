@@ -8,6 +8,8 @@ from pathlib import Path
 import shutil
 from datetime import datetime, timezone
 import zipfile
+import struct
+import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'moonveil_gpt6-astra-pro_mcp-colabdev_threejs'
@@ -28,6 +30,23 @@ def main() -> None:
     report = json.loads((output / 'validation/report.json').read_text())
     if report['failed']:
         raise RuntimeError('Validation failures remain; refusing to package a release.')
+    smoke = json.loads((output / 'validation/build-smoke.json').read_text())
+    source_hash = report.get('stats', {}).get('buildHash')
+    if not smoke.get('passed') or source_hash != smoke.get('sourceHash'):
+        raise RuntimeError('Validation does not match the current verified build.')
+    glb_path = build / f'{BASE}.glb'
+    with glb_path.open('rb') as stream:
+        header = stream.read(20)
+        if len(header) != 20 or header[:4] != b'glTF':
+            raise RuntimeError('Export is not a valid binary glTF file.')
+        length = struct.unpack_from('<I', header, 12)[0]
+        gltf = json.loads(stream.read(length))
+    export_hashes = {node.get('extras', {}).get('sourceBuildHash') for node in gltf.get('nodes', [])}
+    if source_hash not in export_hashes:
+        raise RuntimeError('GLB source hash differs from the validated web model.')
+    anatomy = json.loads((output / 'validation/anatomy-audit.json').read_text())
+    if not anatomy.get('passed'):
+        raise RuntimeError('Strict hand and bilateral-leg audit must pass before packaging.')
     for extension in ('html', 'glb'):
         file = build / f'{BASE}.{extension}'
         if not file.is_file():
@@ -39,6 +58,7 @@ def main() -> None:
         entries.append((ROOT / name, name))
     for folder in ('src', 'scripts', 'docs'):
         entries.extend((f, str(f.relative_to(ROOT))) for f in (ROOT / folder).rglob('*') if f.is_file() and '__pycache__' not in str(f))
+    entries.extend((f, str(f.relative_to(ROOT))) for f in output.glob('*.bundle'))
     entries.extend((f, str(f.relative_to(ROOT))) for f in (output / 'iterations').glob('*.json'))
     entries.extend((f, str(f.relative_to(ROOT))) for f in (output / 'validation').glob('*') if f.suffix in ('.json', '.png'))
     for file in build.rglob('*'):
@@ -69,7 +89,12 @@ def main() -> None:
     release = {
         'createdAt': datetime.now(timezone.utc).isoformat(),
         'project': str(ROOT), 'build': str(build.resolve()),
+        'gitCommit': subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        'gitBranch': subprocess.check_output(['git','branch','--show-current'],cwd=ROOT,text=True).strip(),
         'validation': {'passed': report['passed'], 'failed': report['failed']},
+        'sourceBuildHash': source_hash,
+        'visualReview': json.loads((ROOT / 'docs/manifest.json').read_text())['visualScore'],
+        'anatomyVerified': anatomy['passed'],
         'archiveEntries': entry_count, 'archiveIntegrity': 'verified',
         'persistentArchive': str(retained) if retained else None,
         'files': [{'name': f'{BASE}.{ext}', 'bytes': (build / f'{BASE}.{ext}').stat().st_size,
