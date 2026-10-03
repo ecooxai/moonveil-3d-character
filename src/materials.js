@@ -7,7 +7,7 @@ export function makeMaterials(){
  const skinData=new Uint8Array(Array.from({length:64},(_,i)=>Math.round(100+155*Math.pow(i/63,.85))));
  const skinRamp=new THREE.DataTexture(skinData,64,1,THREE.RedFormat);skinRamp.needsUpdate=true;skinRamp.minFilter=skinRamp.magFilter=THREE.LinearFilter;
  const skin=(name,color)=>{const m=toon(name,color);m.gradientMap=skinRamp;m.emissiveIntensity=.30;return m;};
- const fabric=fabricTexture();fabric.repeat.set(1.60,1.08);const sleeve=fabric.clone();sleeve.repeat.set(.68,.46);const shorts=fabric.clone();shorts.repeat.set(.97,.72);
+ const fabric=fabricTexture();fabric.repeat.set(1,1);const sleeve=fabric.clone();sleeve.repeat.set(.95,.36);const shorts=fabric.clone();shorts.repeat.set(1,1);
  const basic=(name,color)=>new THREE.MeshBasicMaterial({name,color});
  return {
  face:toon('Soft porcelain face','#fff5f0'),skin:skin('Warm porcelain skin','#fff3ec'),skinShade:toon('Warm fingers and ears','#f3c5c6'),

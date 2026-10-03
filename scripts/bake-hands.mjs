@@ -20,6 +20,27 @@ function capsules(points,radii,count,transform){
  }
  return segments;
 }
+// Cancel opposite duplicate faces created when isosurface samples collapse to
+// the same quantized vertex. A doubled zero-volume flap is not a skin surface.
+function cleanFaces(indices){
+ const faces=new Map();let repeated=0,oppositePairs=0,duplicates=0;
+ for(let i=0;i<indices.length;i+=3){
+  const a=indices[i],b=indices[i+1],c=indices[i+2];
+  if(a===b||b===c||c===a){repeated++;continue;}
+  const sorted=[a,b,c].sort((x,y)=>x-y),key=sorted.join(',');
+  const positive=(a<b&&b<c)||(b<c&&c<a)||(c<a&&a<b),sign=positive?1:-1;
+  if(!faces.has(key))faces.set(key,{face:[a,b,c],balance:sign});
+  else{const entry=faces.get(key);if(entry.balance===sign)duplicates++;else{entry.balance+=sign;oppositePairs++;}}
+ }
+ const result=[];
+ for(const entry of faces.values())if(entry.balance!==0){
+  let face=entry.face,positive=(face[0]<face[1]&&face[1]<face[2])||(face[1]<face[2]&&face[2]<face[0])||(face[2]<face[0]&&face[0]<face[1]);
+  if((entry.balance>0)!==positive)face=[face[0],face[2],face[1]];
+  result.push(...face);
+ }
+ if(repeated||oppositePairs||duplicates)console.log(JSON.stringify({meshCleanup:{repeated,oppositePairs,duplicates}}));
+ return result;
+}
 function capsuleDistance(x,y,z,s){
  const dx=x-s.a[0],dy=y-s.a[1],dz=z-s.a[2],t=Math.max(0,Math.min(1,(dx*s.d[0]+dy*s.d[1]+dz*s.d[2])/s.length2));
  return Math.hypot(dx-t*s.d[0],dy-t*s.d[1],dz-t*s.d[2])-(s.ra+(s.rb-s.ra)*t);
@@ -63,6 +84,7 @@ for(const [name,spec]of Object.entries(HANDS)){
  const positions=mc.geometry.attributes.position.array.slice(0,mc.count*3);
  for(let i=0;i<positions.length;i++){const axis=i%3;const t=(positions[i]+1)*.5,value=at(axis,t);positions[i]=min[axis]+Math.round((value-min[axis])/span[axis]*65535)/65535*span[axis];}
  const raw=new THREE.BufferGeometry();raw.setAttribute('position',new THREE.BufferAttribute(positions,3));const welded=mergeVertices(raw,1e-7),p=welded.attributes.position,q=new Uint16Array(p.array.length);
+ welded.setIndex(cleanFaces(welded.index.array));
  const neighbors=Array.from({length:p.count},()=>new Set());
  for(let i=0;i<welded.index.count;i+=3){const a=welded.index.getX(i),b=welded.index.getX(i+1),c=welded.index.getX(i+2);for(const [x,y]of[[a,b],[b,c],[c,a]]){if(x!==y){neighbors[x].add(y);neighbors[y].add(x);}}}
  const adjacency=neighbors.map(set=>Array.from(set)),scratch=new Float32Array(p.array.length);
@@ -80,7 +102,7 @@ for(const [name,spec]of Object.entries(HANDS)){
  const requestedError=.00075,target=Math.floor(clean.length*.34/3)*3;
  const [simplified,error]=MeshoptSimplifier.simplify(new Uint32Array(clean),dequantized,3,target,requestedError,['ErrorAbsolute']);
  const remap=new Map(),compact=[],newIndices=[];
- for(const old of simplified){
+ for(const old of cleanFaces(simplified)){
   if(!remap.has(old)){remap.set(old,remap.size);compact.push(q[old*3],q[old*3+1],q[old*3+2]);}
   newIndices.push(remap.get(old));
  }

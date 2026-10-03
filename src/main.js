@@ -14,6 +14,7 @@ const host=$('#viewport'),stage=$('#stage');
 let currentView='front',viewHeight=7.60;
 const views={front:{position:[.29,5.05,14],target:[.29,3.48,0],height:7.6,label:'FRONT STUDY'},threequarter:{position:[8.6,5.0,13],target:[.23,3.46,0],height:7.6,label:'THREE-QUARTER STUDY'},side:{position:[14,4.9,.20],target:[.2,3.45,0],height:7.6,label:'SIDE STUDY'},back:{position:[.2,4.95,-14],target:[.2,3.46,0],height:7.6,label:'BACK STUDY'},portrait:{position:[0,6.82,12],target:[0,5.68,0],height:2.76,label:'PORTRAIT STUDY'}};
 Object.assign(views,{
+ outfit:{position:[.08,4.62,9],target:[.08,4.10,.05],height:2.18,minWidth:1.75,detail:true,label:'COTTON / COLLAR AND SEAMS'},
  feet:{position:[0,1.45,8],target:[0,.43,.30],height:1.17,minWidth:.98,detail:true,label:'SLIPPERS / SOFT RIBBONS'},
  raisedhand3q:{position:[-4.6,6.0,6.5],target:[-.58,5.91,.17],height:1.03,minWidth:.70,detail:true,label:'RIGHT HAND / THREE-QUARTER'},
  pillowhand3q:{position:[4.6,3.6,6.5],target:[1.08,3.15,.19],height:.91,minWidth:.66,detail:true,label:'LEFT HAND / THREE-QUARTER'},

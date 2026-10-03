@@ -1,8 +1,8 @@
 {
   "projectPath": "/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web",
   "buildPath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web",
-  "visualScore": 91,
-  "review": "Opened the eyes slightly, refined the violet iris paint, softened the blush marks, and adjusted the head tilt. The staged build passes Chrome startup before publication. The next pass reduces dense arm geometry while preserving the reviewed silhouette and hand shapes.",
+  "visualScore": 93,
+  "review": "Replaced height-dependent texture distortion with consistent physical-scale fabric coordinates and aligned the breast-pocket print to the shirt. Front, garment close-up and rear reviews show a coherent cotton pattern. The stronger global cel-lighting experiment was not adopted because it dulled the pale blue and white fabrics.",
   "status": "Refining reference likeness",
   "testsSummary": "Chrome: 0 JavaScript errors; 0 invalid coordinates",
   "iterations": [
@@ -349,6 +349,76 @@
       "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-portrait.png",
       "buildHash": "e1fd68745febf1e9",
       "reviewedAt": "2026-10-03T07:17:04.080Z"
+    },
+    {
+      "iteration": 37,
+      "score": 91,
+      "title": "Recovered leaner arm geometry",
+      "note": "The recovered front, hand and side renders preserve the longer right leg and continuous wrists. The current audit catches one nonmanifold edge in the simplified gripping hand; this pass is not accepted as topology-complete. Next: widen finger clearances and validate the actual posed joints.",
+      "image": "./preview/iteration-37-raisedhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-37-raisedhand.png",
+      "buildHash": "2a0d5adfd0fe680b",
+      "reviewedAt": "2026-10-03T07:31:23.294Z"
+    },
+    {
+      "iteration": 38,
+      "score": 91,
+      "title": "Separated gripping fingers and shaped knees",
+      "note": "Refined the thumb, separated the four curled fingers, and added subtle kneecap, shin and ankle forms without changing leg segment lengths. The remaining topology defect was traced to an opposite duplicate triangle pair on the wrist rather than fused digits.",
+      "image": "./preview/iteration-38-pillowhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-38-pillowhand.png",
+      "buildHash": "a0cb113dc0260154",
+      "reviewedAt": "2026-10-03T07:34:59.021Z"
+    },
+    {
+      "iteration": 39,
+      "score": 92,
+      "title": "Matched leg anatomy and clean continuous hands",
+      "note": "Visually reviewed the legs and both hands from front and oblique angles. Both arm-hand meshes now have zero open or nonmanifold edges; the opposite duplicate wrist flap was removed. Thighs and shins retain equal left/right lengths, with shaped knees, calves and grounded ankles.",
+      "image": "./preview/iteration-39-legs.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-39-legs.png",
+      "buildHash": "a31a3ba8f08405b2",
+      "reviewedAt": "2026-10-03T07:36:32.827Z"
+    },
+    {
+      "iteration": 40,
+      "score": 92,
+      "title": "Restored face proportions and fitted headband",
+      "note": "Restored vertical face length and improved the cloth headband fit. Front and side views remain coherent. The separate neck-facing strip and detached-looking temple lock still need cleanup.",
+      "image": "./preview/iteration-40-portrait.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-40-portrait.png",
+      "buildHash": "1e99133ef6dba913",
+      "reviewedAt": "2026-10-03T07:40:49.896Z"
+    },
+    {
+      "iteration": 41,
+      "score": 93,
+      "title": "Continuous hair layers and a cleaner expression",
+      "note": "Replaced the isolated temple tube with a root-to-tip curved ribbon, added fine strand flow, softened the eye proportions, and removed the floating neck-facing strip. Portrait and side review show a cleaner hairline, neckline and headband fit.",
+      "image": "./preview/iteration-41-portrait.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-41-portrait.png",
+      "buildHash": "9fb9f59431494488",
+      "reviewedAt": "2026-10-03T07:45:09.536Z"
+    },
+    {
+      "iteration": 42,
+      "score": 93,
+      "title": "Sewn cotton details and clean cuff edges",
+      "note": "Added a fine pocket seam, stronger controlled fabric drape, and clean white cuff piping. Removed the rectangular neck shadow. The close-up now shows readable cotton folds and a pocket that follows the shirt surface.",
+      "image": "./preview/iteration-42-outfit.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-42-outfit.png",
+      "buildHash": "a272e84695a41e04",
+      "reviewedAt": "2026-10-03T07:48:38.911Z"
+    },
+    {
+      "iteration": 43,
+      "score": 93,
+      "title": "Consistent cotton print across the garment",
+      "note": "Replaced height-dependent texture distortion with consistent physical-scale fabric coordinates and aligned the breast-pocket print to the shirt. Front, garment close-up and rear reviews show a coherent cotton pattern. The stronger global cel-lighting experiment was not adopted because it dulled the pale blue and white fabrics.",
+      "image": "./preview/iteration-43-outfit.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-outfit.png",
+      "buildHash": "47a0df907538946e",
+      "reviewedAt": "2026-10-03T07:55:35.813Z"
     }
   ],
   "requestedIterations": 20000,
@@ -360,39 +430,39 @@
   },
   "latestViews": [
     {
-      "url": "./preview/iteration-36-front.png",
-      "label": "Full character · review 36",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-front.png"
+      "url": "./preview/iteration-43-front.png",
+      "label": "Full character · review 43",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-front.png"
     },
     {
-      "url": "./preview/iteration-36-raisedhand.png",
-      "label": "Right hand · temple · review 36",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-raisedhand.png"
+      "url": "./preview/iteration-39-raisedhand.png",
+      "label": "Right hand · temple · review 39",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-39-raisedhand.png"
     },
     {
-      "url": "./preview/iteration-34-pillowhand.png",
-      "label": "Left hand · pillow · review 34",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-34-pillowhand.png"
+      "url": "./preview/iteration-39-pillowhand.png",
+      "label": "Left hand · pillow · review 39",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-39-pillowhand.png"
     },
     {
-      "url": "./preview/iteration-35-legs.png",
-      "label": "Matched leg proportions · review 35",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-legs.png"
+      "url": "./preview/iteration-42-legs.png",
+      "label": "Matched leg proportions · review 42",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-42-legs.png"
     },
     {
-      "url": "./preview/iteration-36-portrait.png",
-      "label": "Portrait · review 36",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-portrait.png"
+      "url": "./preview/iteration-42-portrait.png",
+      "label": "Portrait · review 42",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-42-portrait.png"
     },
     {
-      "url": "./preview/iteration-35-side.png",
-      "label": "Side view · review 35",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-side.png"
+      "url": "./preview/iteration-41-side.png",
+      "label": "Side view · review 41",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-41-side.png"
     },
     {
-      "url": "./preview/iteration-35-back.png",
-      "label": "Rear hair and costume · review 35",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-back.png"
+      "url": "./preview/iteration-43-back.png",
+      "label": "Rear hair and costume · review 43",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-43-back.png"
     }
   ]
 }

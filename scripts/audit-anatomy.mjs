@@ -11,4 +11,5 @@ for(const key of ['raised','holding']){
  report.hands.push({hand:key,vertices:d.vertices,triangles:d.triangles,repeatedIndexFaces:repeats,boundaryEdges:boundary,nonmanifoldEdges:nonmanifold});
 }
 fs.mkdirSync('output/validation',{recursive:true});fs.writeFileSync('output/validation/anatomy-audit.json',JSON.stringify(report,null,2));
-console.log(JSON.stringify(report));
+report.passed=report.hands.every(h=>h.boundaryEdges===0&&h.nonmanifoldEdges===0&&h.repeatedIndexFaces===0)&&Math.abs(report.legs[0].thigh-report.legs[1].thigh)<1e-9&&Math.abs(report.legs[0].shin-report.legs[1].shin)<1e-9;
+fs.writeFileSync('output/validation/anatomy-audit.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));if(process.argv.includes('--strict')&&!report.passed)process.exitCode=1;

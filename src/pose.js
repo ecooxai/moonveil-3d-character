@@ -6,11 +6,11 @@ export function posePoint(world,part,halo=false){
  if(part==='Legs')return world;
  const y0=world.y;
  if(!halo){
-  const headShift=y=>.24-.14*(y-5.20);
+  const headShift=y=>.10-.014*(y-5.20);
   if(part.startsWith('Head'))world.y+=headShift(y0);
-  else if(part.startsWith('Hair'))world.y+=y0>=5.2?headShift(y0):.24*THREE.MathUtils.smoothstep(y0,4.05,5.2);
+  else if(part.startsWith('Hair'))world.y+=y0>=5.2?headShift(y0):.10*THREE.MathUtils.smoothstep(y0,4.05,5.2);
   else if(part.startsWith('Accessories')&&y0>5.7){const dy=headShift(y0);world.y+=dy*(1-THREE.MathUtils.smoothstep(y0,6.32,6.67));}
-  else world.y+=.24*Math.pow(THREE.MathUtils.smoothstep(y0,2.75,5.1),.45);
+  else world.y+=.10*Math.pow(THREE.MathUtils.smoothstep(y0,2.75,5.1),.45);
  }
  const y=world.y,upper=THREE.MathUtils.smoothstep(y,3.15,5.2),head=halo?0:THREE.MathUtils.smoothstep(y,5.10,5.46);
  world.x+=.176*upper;

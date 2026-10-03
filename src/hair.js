@@ -44,7 +44,7 @@ export function buildHair(root,M){
   ['Parted left forehead lock',[[.025,6.253,.11],[.235,6.109,.239],[.348,5.924,.267],[.385,5.696,.265],[.342,5.432,.271],[.234,5.302,.26]],[.060,.123,.119,.098,.082,.001],[.036,.051,.048,.044,.028,.001],M.hairLight],
   ['Left cheek outer layer',[[.23,6.19,-.008],[.433,5.984,.09],[.485,5.652,.145],[.467,5.371,.18],[.347,5.247,.199]],[.05,.114,.102,.075,.001],[.045,.062,.052,.039,.001],M.hair],
  ];
- for(const [name,p,w,d,mat] of bangs)if(!['Swept central bang','Parted left forehead lock','Central left bang'].includes(name))sweep(hair,name,p,w,d,mat,{steps:58,sides:18,outline:.0045});
+ for(const [name,p,w,d,mat] of bangs)if(!['Swept central bang','Parted left forehead lock','Central left bang','Slim eye-side bang'].includes(name))sweep(hair,name,p,w,d,mat,{steps:58,sides:18,outline:.0045});
  // Bezier silhouettes control the forehead curl while a curved support surface
  // gives each lock closed volume, a soft edge, and a natural three-quarter profile.
  const profile=[[5.24,.19],[5.40,.295],[5.60,.370],[5.80,.410],[5.96,.375],[6.10,.294],[6.22,.197],[6.31,.085]];
@@ -78,6 +78,19 @@ export function buildHair(root,M){
  left.quadraticCurveTo(-.110,6.204,-.07,6.30);left.closePath();
  contourVolume(hair,'Central left bang',left,M.hair,(x,y)=>support(x,y)-.016,{depth:.017,bevel:.004,outline:0});
  edgeOf(left,'Left fringe fine contour',.007);
+ // A root-to-tip ribbon replaces the detached tubular temple patch.
+ const temple=new THREE.Shape();temple.moveTo(-.085,6.300);
+ temple.bezierCurveTo(-.284,6.246,-.416,6.068,-.446,5.894);
+ temple.bezierCurveTo(-.468,5.746,-.445,5.576,-.399,5.499);
+ temple.bezierCurveTo(-.406,5.660,-.375,5.812,-.326,5.941);
+ temple.bezierCurveTo(-.278,6.065,-.171,6.222,-.085,6.300);temple.closePath();
+ contourVolume(hair,'Rooted temple fringe ribbon',temple,M.hairLight,(x,y)=>support(x,y)+.004,{depth:.014,bevel:.0035,outline:0});
+ edgeOf(temple,'Temple ribbon fine contour',.023);
+ const strandPaths=[
+  ['Central fringe flow',[[-.126,6.247],[-.215,6.115],[-.216,5.977],[-.157,5.846],[-.064,5.728]],.031],
+  ['Parted fringe flow',[[.204,6.174],[.329,6.008],[.381,5.798],[.357,5.527],[.291,5.327]],.033],
+ ];
+ for(const [name,points,offset]of strandPaths)sweep(hair,name,points.map(([x,y])=>[x,y,support(x,y)+offset]),[.0003,.0019,.0016,.0013,.0003],[.0003,.0012,.0012,.0008,.0003],M.hair,{steps:58,sides:6,outline:0});
  const flow=[[.199,6.115],[.230,5.993],[.244,5.855],[.240,5.743],[.222,5.698]];
  sweep(hair,'Fine forehead part strand',flow.map(([x,y])=>[x,y,support(x,y)+.033]),[.003,.008,.007,.005,.0005],[.002,.004,.004,.003,.0004],M.hair,{steps:42,sides:10,outline:0});
  // Small attached highlights are curved surface details, not floating cards.

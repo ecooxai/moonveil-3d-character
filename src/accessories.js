@@ -30,10 +30,10 @@ export function buildAccessories(root,M){
  // A softly gathered cloth band, broader across the hair and flatter than a foam tube.
  const bandPoint=(u,v)=>{
   const theta=u*Math.PI,alpha=v*Math.PI*2,gather=.0035*Math.sin(theta*38+.4)+.0018*Math.sin(theta*64),r=.036+gather;
-  return [(.529+r*Math.cos(alpha))*Math.cos(theta),5.867+(.447+r*Math.cos(alpha))*Math.sin(theta),-.015+.077*Math.sin(alpha)+.105*Math.cos(theta)**2];
+  return [(.545+r*Math.cos(alpha))*Math.cos(theta),5.885+(.480+r*Math.cos(alpha))*Math.sin(theta),-.015+.077*Math.sin(alpha)+.105*Math.cos(theta)**2];
  };
  mesh(accessories,'Soft white headband',gridGeometry(112,24,bandPoint),M.white,.0018);
- for(const sign of [-1,1])ellipsoid(accessories,'Headband padded end',[sign*.529,5.867,.090],[.038,.037,.077],M.white,.001,28);
+ for(const sign of [-1,1])ellipsoid(accessories,'Headband padded end',[sign*.545,5.885,.090],[.038,.037,.077],M.white,.001,28);
  const edge=[];for(let i=0;i<=60;i++)edge.push(bandPoint(i/60,.205));line(accessories,'Headband fine gathered seam',edge,.0014,M.whiteShade,{steps:140,sides:5});
  sweep(accessories,'White bow left leaf',[[-.019,6.327,.080],[-.162,6.420,.064],[-.300,6.478,.048],[-.448,6.463,.024]],[.028,.102,.088,.001],[.023,.036,.028,.001],M.white,{steps:42,sides:18,outline:.004});
  sweep(accessories,'White bow upward leaf',[[.02,6.327,.075],[.142,6.45,.055],[.264,6.578,.026],[.312,6.664,.013]],[.027,.106,.074,.001],[.026,.04,.025,.001],M.white,{steps:42,sides:18,outline:.004});

@@ -1,0 +1,66 @@
+{
+  "tag": "iteration-39",
+  "view": "pillowhand",
+  "stats": {
+    "buildHash": "a31a3ba8f08405b2",
+    "meshes": 172,
+    "vertices": 284546,
+    "triangles": 368090,
+    "materials": 27,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1505190134048462,
+        0.01600000075995922,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.0659101009368896,
+        6.837700102021289,
+        0.8975655288696289
+      ],
+      "size": [
+        3.216429114341736,
+        6.82170010126133,
+        1.5876603053406981
+      ]
+    },
+    "batching": {
+      "inputMeshes": 241,
+      "drawMeshes": 35,
+      "method": "Exact material batching with baked outline extrusion"
+    },
+    "drawTree": {
+      "meshes": 33,
+      "vertices": 199732,
+      "triangles": 368090,
+      "materials": 27,
+      "badVertices": 0,
+      "bounds": {
+        "min": [
+          -1.1550184488296509,
+          0.01400067564100027,
+          -0.6904951930046082
+        ],
+        "max": [
+          2.0659101009368896,
+          6.832502365112305,
+          0.8981654644012451
+        ],
+        "size": [
+          3.2209285497665405,
+          6.818501689471304,
+          1.5886606574058533
+        ]
+      }
+    },
+    "render": {
+      "frame": 10,
+      "calls": 15,
+      "triangles": 569996,
+      "points": 0,
+      "lines": 0
+    }
+  },
+  "errors": []
+}
