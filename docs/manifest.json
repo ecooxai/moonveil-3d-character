@@ -10,73 +10,55 @@
       "iteration": 1,
       "score": 58,
       "title": "First full-volume assembly",
-      "note": "All principal features are present. Review found muted lighting, scalp clipping, a wrist seam, and overly small sleeve prints.",
-      "image": "./preview/iteration-01-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-01-front.png"
+      "note": "All principal features are present. Review found muted lighting, scalp clipping, a wrist seam, and overly small sleeve prints."
     },
     {
       "iteration": 2,
       "score": 66,
       "title": "Color, fabric and all-angle review",
-      "note": "Brightened the palette, enlarged cat prints and closed the wrist and shorts intersections. Portrait and rear views exposed oversized eye contours and a heavy back-hair core.",
-      "image": "./preview/iteration-02-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-02-portrait.png"
+      "note": "Brightened the palette, enlarged cat prints and closed the wrist and shorts intersections. Portrait and rear views exposed oversized eye contours and a heavy back-hair core."
     },
     {
       "iteration": 3,
       "score": 71,
       "title": "A cleaner face and rear silhouette",
-      "note": "Opened the hair part, reduced the eye outlines, unified neck topology and replaced the protruding back-hair core with continuous layered strands.",
-      "image": "./preview/iteration-03-back.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-03-back.png"
+      "note": "Opened the hair part, reduced the eye outlines, unified neck topology and replaced the protruding back-hair core with continuous layered strands."
     },
     {
       "iteration": 4,
       "score": 74,
       "title": "Expression, proportions and pillow volume",
-      "note": "Corrected iris aspect ratio and chin projection, softened the expression, and replaced the rigid pillow outline with curved sewn edges. Checked the front, portrait and three-quarter views.",
-      "image": "./preview/iteration-04-threequarter.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-04-threequarter.png"
+      "note": "Corrected iris aspect ratio and chin projection, softened the expression, and replaced the rigid pillow outline with curved sewn edges. Checked the front, portrait and three-quarter views."
     },
     {
       "iteration": 5,
       "score": 77,
       "title": "Soft cotton, rounded cuffs and a settled pose",
-      "note": "Replaced pointed waves with rounded cloth scallops, added pillow tension folds, varied the cat print, exposed the slipper bows and introduced a subtle upper-body lean.",
-      "image": "./preview/iteration-05-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-05-front.png"
+      "note": "Replaced pointed waves with rounded cloth scallops, added pillow tension folds, varied the cat print, exposed the slipper bows and introduced a subtle upper-body lean."
     },
     {
       "iteration": 6,
       "score": 79,
       "title": "A quieter expression and cleaner fabric layers",
-      "note": "Enlarged the irises, softened the chin, narrowed the brows, added the white inner facing, and restored a visible tapered tip to the swept bang.",
-      "image": "./preview/iteration-06-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-06-portrait.png"
+      "note": "Enlarged the irises, softened the chin, narrowed the brows, added the white inner facing, and restored a visible tapered tip to the swept bang."
     },
     {
       "iteration": 7,
       "score": 78,
       "title": "A useful comparison, not a finished fringe",
-      "note": "The cooler violet palette, grey halo and rear-foot step improved the study. The narrower central forelock exposed too much left brow and weakened the likeness; the next edit replaces its tube-like profile.",
-      "image": "./preview/iteration-07-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-07-portrait.png"
+      "note": "The cooler violet palette, grey halo and rear-foot step improved the study. The narrower central forelock exposed too much left brow and weakened the likeness; the next edit replaces its tube-like profile."
     },
     {
       "iteration": 8,
       "score": 80,
       "title": "A sculpted ribbon rather than a hair tube",
-      "note": "Rebuilt the main fringe with independently authored silhouette edges and real thickness. Reduced the upper-lid contour and gave the eyes a slight sideways gaze.",
-      "image": "./preview/iteration-08-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-08-portrait.png"
+      "note": "Rebuilt the main fringe with independently authored silhouette edges and real thickness. Reduced the upper-lid contour and gave the eyes a slight sideways gaze."
     },
     {
       "iteration": 9,
       "score": 80,
       "title": "Recovered curl study",
       "note": "Recovered and inspected the saved portrait and three-quarter views. All key features exist; the fringe-root opening, eye scale, and cloth stiffness still need refinement.",
-      "image": "./preview/iteration-09-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-09-portrait.png",
       "buildHash": "065ba79b1ac0b2ff",
       "reviewedAt": "2026-10-03T03:44:57.670Z"
     },
@@ -85,8 +67,6 @@
       "score": 80,
       "title": "Softer face, cleaner strand shading",
       "note": "Smoothed duplicate-position normals and removed noisy hair self-shadows. The review exposed an unwanted crown sliver and excessively tall irises; the visual score is unchanged.",
-      "image": "./preview/iteration-10-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-10-portrait.png",
       "buildHash": "df3c6176048b7d91",
       "reviewedAt": "2026-10-03T03:44:57.709Z"
     },
@@ -95,8 +75,6 @@
       "score": 79,
       "title": "Profile check and crown experiment",
       "note": "The independent halo tilt and softer eye contours are useful, but the added crown volume reads like a cap. The side review also exposed an unnatural bend above the far slipper.",
-      "image": "./preview/iteration-11-side.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-11-side.png",
       "buildHash": "f29d72635612720e",
       "reviewedAt": "2026-10-03T03:47:03.008Z"
     },
@@ -105,8 +83,6 @@
       "score": 77,
       "title": "A useful rejected arm contour",
       "note": "The far leg is smoother and the crown cap is gone, but the hand-authored forearm edges were not perpendicular to its direction, making it unnaturally narrow. This pass is not accepted as an improvement.",
-      "image": "./preview/iteration-12-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-12-portrait.png",
       "buildHash": "f1b7ff0e4380550b",
       "reviewedAt": "2026-10-03T03:49:58.811Z"
     },
@@ -115,8 +91,6 @@
       "score": 80,
       "title": "Curved hair volumes and a full forearm",
       "note": "The beveled curl is more organic and the forearm has its intended volume. Layer-isolation renders found older strands and outline shells intersecting the new fringe; these are the next cleanup target.",
-      "image": "./preview/iteration-13-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-13-portrait.png",
       "buildHash": "5c18937da6727e5f",
       "reviewedAt": "2026-10-03T03:53:51.711Z"
     },
@@ -125,8 +99,6 @@
       "score": 82,
       "title": "A clean, curved forehead curl",
       "note": "Removed intersecting fringe layers and replaced unstable outline shells with fine contours. The portrait and three-quarter views now show a clean open curl and a full, continuous raised forearm. Clothing still looks too stiff.",
-      "image": "./preview/iteration-14-portrait.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-14-portrait.png",
       "buildHash": "d770f01c286ff85f",
       "reviewedAt": "2026-10-03T03:57:26.329Z"
     },
@@ -135,8 +107,6 @@
       "score": 83,
       "title": "Looser cotton and a curved collar",
       "note": "Lengthened the shirt, added shallow fabric folds, curved the lapels, and matched the pocket print to the shirt. Front and rear reviews show continuous geometry; the pillow still hangs too far away from the legs.",
-      "image": "./preview/iteration-15-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-15-front.png",
       "buildHash": "52e6c0400c750790",
       "reviewedAt": "2026-10-03T03:59:16.814Z"
     },
@@ -145,8 +115,6 @@
       "score": 84,
       "title": "A pillow that settles behind the pose",
       "note": "Broadened and turned the filled pillow behind the legs, added a subtle crown highlight, and strengthened the relaxed head tilt. Front, portrait and side renders show a more coherent silhouette; proportions are still being compared visually.",
-      "image": "./preview/iteration-16-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-16-front.png",
       "buildHash": "65ad25dec1e4f9fb",
       "reviewedAt": "2026-10-03T04:01:27.618Z"
     },
@@ -155,8 +123,6 @@
       "score": 84,
       "title": "Balanced head and accessory proportions",
       "note": "The head and slippers are closer to the reference proportions. The full-body review found that the shirt hem and held pillow moved upward too much; their offsets will be reduced.",
-      "image": "./preview/iteration-17-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-17-front.png",
       "buildHash": "0697bf5c6527428e",
       "reviewedAt": "2026-10-03T04:02:35.858Z"
     },
@@ -165,8 +131,6 @@
       "score": 85,
       "title": "Settled proportions and a cleaner silhouette",
       "note": "Reduced the lower-torso offset so the shirt and held pillow settle closer to the reference. The head, shoulder and shorts proportions are now more coherent. Reviewed renders have no invalid coordinates or JavaScript errors.",
-      "image": "./preview/iteration-18-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-18-front.png",
       "buildHash": "c3a92450279f4503",
       "reviewedAt": "2026-10-03T04:06:00.437Z"
     },
@@ -175,8 +139,6 @@
       "score": 85,
       "title": "The same sculpture, fewer draw calls",
       "note": "Preserved the named editable sculpture and its 282,572 triangles while batching the draw tree into 30 meshes. The tested front view dropped from 276 to 33 draw calls. GLB export and reload preserve all 194 named parts.",
-      "image": "./preview/iteration-19-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-19-front.png",
       "buildHash": "f1f0de3af7429838",
       "reviewedAt": "2026-10-03T04:15:52.815Z"
     },
@@ -185,8 +147,6 @@
       "score": 85,
       "title": "Mobile and offline studio validation",
       "note": "All 26 automated checks passed, including mobile layout and offline HTML startup. A separate visual review still found the near slipper partly behind the mobile toolbar, so a stricter framing regression check was added for the next pass.",
-      "image": "./preview/iteration-20-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-20-front.png",
       "buildHash": "59a49aebe8852b88",
       "reviewedAt": "2026-10-03T04:20:47.955Z"
     },
@@ -195,8 +155,6 @@
       "score": 85,
       "title": "Validated desktop, mobile, and offline checkpoint",
       "note": "Completed the front, portrait, side and rear review. The mobile title no longer covers the face, both slippers remain above the toolbar, and all 28 automated checks pass. The character remains a static 85/100 subjective likeness study, below the requested 95/100 target.",
-      "image": "./preview/iteration-21-front.png",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-21-front.png",
       "buildHash": "80987b2667ddd715",
       "reviewedAt": "2026-10-03T04:28:30.700Z"
     },

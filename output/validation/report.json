@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-03T08:31:29.759Z",
+  "checkedAt": "2026-10-03T09:50:01.663Z",
   "checks": [
     {
       "name": "Geometry contains no invalid coordinates",
@@ -203,9 +203,9 @@
       "name": "Desktop camera controls do not cover the feet",
       "passed": true,
       "detail": {
-        "lowestFootPixel": 657.9763953451068,
+        "lowestFootPixel": 657.8805100318712,
         "controlsTop": 685,
-        "clearance": 27.023604654893234
+        "clearance": 27.119489968128846
       }
     },
     {
@@ -255,9 +255,9 @@
       "detail": {
         "angles": 24,
         "submissionMs": {
-          "min": 0.900000000372529,
-          "max": 2.099999999627471,
-          "mean": 1.1499999999844779
+          "min": 0.6000000000931323,
+          "max": 2.199999999953434,
+          "mean": 0.9958333333294528
         },
         "drawCalls": 41,
         "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
@@ -303,9 +303,9 @@
       "name": "Mobile camera controls do not cover the feet",
       "passed": true,
       "detail": {
-        "lowestFootPixel": 721.1162926340576,
+        "lowestFootPixel": 721.1634379449619,
         "controlsTop": 742,
-        "clearance": 20.883707365942428
+        "clearance": 20.836562055038144
       }
     },
     {
@@ -469,9 +469,9 @@
   "benchmark": {
     "angles": 24,
     "submissionMs": {
-      "min": 0.900000000372529,
-      "max": 2.099999999627471,
-      "mean": 1.1499999999844779
+      "min": 0.6000000000931323,
+      "max": 2.199999999953434,
+      "mean": 0.9958333333294528
     },
     "drawCalls": 41,
     "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
