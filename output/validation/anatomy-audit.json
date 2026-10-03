@@ -28,19 +28,19 @@
   "hands": [
     {
       "hand": "raised",
-      "vertices": 14141,
-      "triangles": 28278,
+      "vertices": 15092,
+      "triangles": 30180,
       "repeatedIndexFaces": 0,
       "boundaryEdges": 0,
       "nonmanifoldEdges": 0
     },
     {
       "hand": "holding",
-      "vertices": 17118,
-      "triangles": 34236,
+      "vertices": 12639,
+      "triangles": 25286,
       "repeatedIndexFaces": 0,
       "boundaryEdges": 0,
-      "nonmanifoldEdges": 0
+      "nonmanifoldEdges": 1
     }
   ]
 }

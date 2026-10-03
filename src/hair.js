@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {mesh,gridGeometry,loft,sweep,line,ellipsoid,ribbon,contourVolume} from './geometry.js';
+import {mesh,gridGeometry,loft,sweep,line,ellipsoid,ribbon,contourVolume,sampleRows} from './geometry.js';
 export function buildHair(root,M){
  const hair=new THREE.Group();hair.name='Hair / layered violet sculpt';root.add(hair);
 
@@ -8,10 +8,25 @@ export function buildHair(root,M){
   return [.479*Math.sin(p)*Math.sin(a),5.775+.558*Math.cos(p),-.050+.427*Math.sin(p)*Math.cos(a)];
  }),M.hair,.008);
  loft(hair,'Long hair inner volume',[[4.00,0,-.26,.012,.01],[4.16,.035,-.29,.45,.10],[4.42,.035,-.28,.49,.13],[4.83,.012,-.25,.46,.145],[5.25,0,-.21,.43,.16],[5.66,0,-.178,.39,.16],[5.99,0,-.15,.30,.15],[6.19,0,-.065,.07,.06]],M.hair,{steps:56,segments:56,outline:.003});
+ const rearShine=M.hair.clone();rearShine.name='Subtle rear strand sheen';rearShine.color.set('#7472a2');rearShine.emissive.set('#7472a2');
+ const tipHeights=[3.84,3.64,3.88,3.57,3.72,3.52,3.68,3.55,3.79,3.69,3.92];
+ const drifts=[-.12,-.08,.025,-.025,.10,.075,.145,.105,.165,.12,.16];
+ const breadth=[1.10,.90,1.12,.82,1.05,.96,.90,1.08,.90,.97,.87];
  for(let i=0;i<11;i++){
-  const s=(i-5)/5,tipY=[3.84,3.76,3.93,3.58,3.68,3.77,3.59,3.81,3.66,3.76,3.95][i],drift=[-.03,.02,-.051,.014,-.01,.042,-.028,.026,-.05,.014,.04][i];
-  sweep(hair,`Back hair layer ${i+1}`,[[s*.07,6.277,-.139],[s*.23,6.113,-.346+.048*s*s],[s*.382,5.844,-.453+.124*s*s],[s*.441,5.331,-.485+.116*s*s],[s*.51+.035,4.784,-.524+.094*s*s],[s*.573+drift,4.163,-.482+.052*s*s],[s*.556+drift+.05,tipY,-.359]],
-   [.025,.073,.102,.122,.126,.105,.0007],[.019,.035,.05,.061,.064,.044,.001],i%4===0?M.hairLight:M.hair,{steps:72,sides:16,outline:.004});
+  const s=(i-5)/5,drift=drifts[i],f=breadth[i];
+  const points=[[s*.07,6.277,-.139],[s*.23,6.113,-.346+.048*s*s],[s*.382,5.844,-.453+.124*s*s],[s*.441+.024*Math.sin(i*.8),5.331,-.485+.116*s*s],[s*.53+.045+drift*.2,4.784,-.540+.094*s*s],[s*.575+.075+drift*.6,4.163,-.470+.070*s*s],[s*.558+.07+drift,tipHeights[i],-.335+.040*s]];
+  const widths=[.025,.073,.102,.122,.126,.098,.0007].map(w=>w*f),depths=[.019,.035,.05,.061,.064,.040,.001];
+  sweep(hair,`Back hair layer ${i+1}`,points,widths,depths,M.hair,{steps:76,sides:18,outline:.0025});
+  const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.45),sizes=widths.map((w,j)=>[w,depths[j]]);
+  const onSurface=(t,angle,offset=.0015)=>{
+   const p=curve.getPoint(t),tangent=curve.getTangent(t).normalize(),back=new THREE.Vector3(0,0,1).addScaledVector(tangent,-tangent.z).normalize(),side=back.clone().cross(tangent).normalize(),[w,d]=sampleRows(sizes,t);
+   return p.addScaledVector(side,w*Math.cos(angle)).addScaledVector(back,d*Math.sin(angle)-offset).toArray();
+  };
+  if([1,4,7,9].includes(i)){
+   const start=.17+.014*(i%3),length=.54-.030*(i%2);
+   mesh(hair,`Rear silk highlight ${i+1}`,gridGeometry(12,50,(u,v)=>onSurface(start+length*v,-Math.PI/2+(u-.5)*.62*Math.pow(Math.sin(Math.PI*v),.65))),rearShine,0);
+  }
+  if(i%2===0){const groove=[];for(let j=0;j<=30;j++)groove.push(onSurface(.22+j/30*.68,-1.98,.0016));line(hair,`Rear strand separation ${i+1}`,groove,.0015,M.hairDark,{steps:74,sides:5});}
  }
  const locks=[
   ['Right outward wisp',[[-.35,5.93,-.10],[-.48,5.48,-.13],[-.57,5.04,-.17],[-.74,4.61,-.17],[-.92,4.39,-.09],[-1.17,4.31,.015]],[.05,.12,.13,.12,.065,.001],M.hair],

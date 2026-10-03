@@ -15,7 +15,7 @@ export function posePoint(world,part,halo=false){
  const y=world.y,upper=THREE.MathUtils.smoothstep(y,3.15,5.2),head=halo?0:THREE.MathUtils.smoothstep(y,5.10,5.46);
  world.x+=.176*upper;
  const px=world.x-.176,py=y-5.27;
- world.x+=head*(px*.023-py*.087);world.y+=head*(px*.087+py*.018);
+ world.x+=head*(px*.023-py*.112);world.y+=head*(px*.112+py*.018);
  return world;
 }
 export function settlePose(root){

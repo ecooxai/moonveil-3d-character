@@ -14,6 +14,7 @@ const host=$('#viewport'),stage=$('#stage');
 let currentView='front',viewHeight=7.60;
 const views={front:{position:[.29,5.05,14],target:[.29,3.48,0],height:7.6,label:'FRONT STUDY'},threequarter:{position:[8.6,5.0,13],target:[.23,3.46,0],height:7.6,label:'THREE-QUARTER STUDY'},side:{position:[14,4.9,.20],target:[.2,3.45,0],height:7.6,label:'SIDE STUDY'},back:{position:[.2,4.95,-14],target:[.2,3.46,0],height:7.6,label:'BACK STUDY'},portrait:{position:[0,6.82,12],target:[0,5.68,0],height:2.76,label:'PORTRAIT STUDY'}};
 Object.assign(views,{
+ feet:{position:[0,1.45,8],target:[0,.43,.30],height:1.17,minWidth:.98,detail:true,label:'SLIPPERS / SOFT RIBBONS'},
  raisedhand3q:{position:[-4.6,6.0,6.5],target:[-.58,5.91,.17],height:1.03,minWidth:.70,detail:true,label:'RIGHT HAND / THREE-QUARTER'},
  pillowhand3q:{position:[4.6,3.6,6.5],target:[1.08,3.15,.19],height:.91,minWidth:.66,detail:true,label:'LEFT HAND / THREE-QUARTER'},
  raisedhand:{position:[-.53,5.93,8],target:[-.53,5.93,.10],height:.93,minWidth:.64,detail:true,label:'RIGHT HAND / TEMPLE'},
@@ -56,7 +57,7 @@ function init(){
  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.75));renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.NoToneMapping;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;host.appendChild(renderer.domElement);
  scene=new THREE.Scene();camera=new THREE.OrthographicCamera(-5,5,4,-4,.1,80);
  controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.085;controls.rotateSpeed=.65;controls.zoomSpeed=.8;controls.minZoom=.55;controls.maxZoom=5;controls.maxPolarAngle=Math.PI*.55;controls.minPolarAngle=.12;controls.autoRotateSpeed=.6;controls.addEventListener('change',()=>{needsRender=true;});
- scene.add(new THREE.HemisphereLight(0xf1edff,0xa7a0b7,.96));const key=new THREE.DirectionalLight(0xfff9f6,1.15);key.position.set(-3.5,7,5.2);key.target.position.set(0,3.5,0);key.castShadow=true;key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-3,right:3,top:4,bottom:-4,near:.5,far:18});key.shadow.normalBias=.023;key.shadow.bias=-.00025;scene.add(key,key.target);
+ scene.add(new THREE.HemisphereLight(0xf1edff,0xd2b5bc,.91));const key=new THREE.DirectionalLight(0xfff9f6,1.15);key.position.set(-3.5,7,5.2);key.target.position.set(0,3.5,0);key.castShadow=true;key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-3,right:3,top:4,bottom:-4,near:.5,far:18});key.shadow.normalBias=.023;key.shadow.bias=-.00025;scene.add(key,key.target);
  const fill=new THREE.DirectionalLight(0xcbd4ff,.29);fill.position.set(3,4,-4);scene.add(fill);
  character=createCharacter();character.drawRoot=createDrawTree(character.root);scene.add(character.drawRoot);ground();setView(parameters.get('render')||'front');restoreCamera();new ResizeObserver(resize).observe(host);resize();renderer.render(scene,camera);
  $('#triangle-count').textContent=`${Math.round(character.stats.triangles/1000)}k triangles`;$('#mesh-count').textContent=`${character.stats.meshes} SURFACES`;$('#loading').classList.add('loaded');

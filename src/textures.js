@@ -13,11 +13,11 @@ export function fabricTexture(){
 export function eyeTexture(){
  const canvas=document.createElement('canvas');canvas.width=512;canvas.height=384;const c=canvas.getContext('2d');
  const sclera=c.createLinearGradient(0,0,0,384);sclera.addColorStop(0,'#b5a8c2');sclera.addColorStop(.34,'#fdf9ff');sclera.addColorStop(1,'#fffafb');c.fillStyle=sclera;c.fillRect(0,0,512,384);
- c.save();c.translate(-14,0);c.beginPath();c.ellipse(259,205,134,126,0,0,Math.PI*2);c.clip();
- const g=c.createLinearGradient(0,40,0,380);g.addColorStop(0,'#211b45');g.addColorStop(.30,'#454079');g.addColorStop(.65,'#7561b6');g.addColorStop(1,'#b797e2');c.fillStyle=g;c.fillRect(120,0,280,384);c.lineWidth=3;
+ c.save();c.translate(-14,0);c.beginPath();c.ellipse(259,205,134,140,0,0,Math.PI*2);c.clip();
+ const g=c.createLinearGradient(0,40,0,380);g.addColorStop(0,'#211b45');g.addColorStop(.30,'#3f407b');g.addColorStop(.65,'#6d5bbd');g.addColorStop(1,'#b797e2');c.fillStyle=g;c.fillRect(120,0,280,384);c.lineWidth=3;
  for(let i=0;i<24;i++){const a=i/24*Math.PI*2;c.strokeStyle=i%3?'#9981d6':'#78b8ee';c.globalAlpha=.12;c.beginPath();c.moveTo(259+Math.cos(a)*61,217+Math.sin(a)*63);c.lineTo(259+Math.cos(a)*115,217+Math.sin(a)*101);c.stroke();}
- c.globalAlpha=1;c.fillStyle='#292448';c.beginPath();c.ellipse(259,196,29,52,0,0,Math.PI*2);c.fill();c.strokeStyle='#4b427e';c.lineWidth=9;c.beginPath();c.ellipse(259,205,130,122,0,0,Math.PI*2);c.stroke();
- c.fillStyle='#ffffff';c.beginPath();c.ellipse(211,130,14,21,-.2,0,Math.PI*2);c.fill();c.fillStyle='#e3faff';c.beginPath();c.ellipse(298,283,12,20,.15,0,Math.PI*2);c.fill();c.fillStyle='#b4e9ff';c.beginPath();c.ellipse(214,302,11,16,-.3,0,Math.PI*2);c.fill();c.restore();
+ c.globalAlpha=1;c.fillStyle='#292448';c.beginPath();c.ellipse(259,193,28,59,0,0,Math.PI*2);c.fill();c.strokeStyle='#4b427e';c.lineWidth=9;c.beginPath();c.ellipse(259,205,130,136,0,0,Math.PI*2);c.stroke();
+ c.fillStyle='#ffffff';c.beginPath();c.ellipse(211,130,14,21,-.2,0,Math.PI*2);c.fill();c.fillStyle='#e3faff';c.beginPath();c.ellipse(294,286,13,24,.15,0,Math.PI*2);c.fill();c.fillStyle='#b4e9ff';c.beginPath();c.ellipse(214,302,11,16,-.3,0,Math.PI*2);c.fill();c.restore();
  const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.name='Painted violet anime eyes';return t;
 }
 export function blushTexture(){

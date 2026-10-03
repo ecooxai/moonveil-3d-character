@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {mergeVertices} from 'three/addons/utils/BufferGeometryUtils.js';
 export const V = p => new THREE.Vector3(...p);
 export const clamp = THREE.MathUtils.clamp;
 export const lerp = THREE.MathUtils.lerp;
@@ -113,4 +114,18 @@ export function contourVolume(parent,name,shape,material,zFunction,{depth=.032,b
  }
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(texcoords,2));g.computeVertexNormals();smoothSeamNormals(g);g.computeBoundingSphere();base.dispose();
  return mesh(parent,name,g,material,outline);
+}
+
+// Thin, closed cloth shell, including sewn open-edge walls.
+export function solidify(source,thickness=.006){
+ const input=source.clone();for(const key of Object.keys(input.attributes))if(key!=='position')input.deleteAttribute(key);
+ const g=mergeVertices(input,1e-5);input.dispose();source.dispose();g.computeVertexNormals();
+ const p=g.attributes.position,n=g.attributes.normal,count=p.count,positions=new Float32Array(count*6),indices=[],edges=new Map();
+ for(let i=0;i<count;i++)for(let axis=0;axis<3;axis++){const value=p.array[i*3+axis],delta=n.array[i*3+axis]*thickness*.5;positions[i*3+axis]=value+delta;positions[(i+count)*3+axis]=value-delta;}
+ for(let i=0;i<g.index.count;i+=3){
+  const a=g.index.getX(i),b=g.index.getX(i+1),c=g.index.getX(i+2);indices.push(a,b,c,c+count,b+count,a+count);
+  for(const [x,y]of[[a,b],[b,c],[c,a]]){const key=Math.min(x,y)+','+Math.max(x,y);if(edges.has(key))edges.get(key).count++;else edges.set(key,{a:x,b:y,count:1});}
+ }
+ for(const e of edges.values())if(e.count===1)indices.push(e.b,e.a,e.a+count,e.b,e.a+count,e.b+count);
+ const shell=new THREE.BufferGeometry();shell.setAttribute('position',new THREE.BufferAttribute(positions,3));shell.setAttribute('uv',new THREE.BufferAttribute(new Float32Array(count*4),2));shell.setIndex(indices);shell.computeVertexNormals();shell.computeBoundingSphere();g.dispose();return shell;
 }

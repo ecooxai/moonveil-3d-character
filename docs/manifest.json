@@ -1,8 +1,8 @@
 {
   "projectPath": "/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web",
   "buildPath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web",
-  "visualScore": 88,
-  "review": "Straightened the middle finger, concealed the wrist overlaps, and matched the near cuff depth to its pant leg. The close-up caught an overlarge separate pillow flap; the next pass replaces it with a pinched corner of the pillow surface itself.",
+  "visualScore": 91,
+  "review": "Opened the eyes slightly, refined the violet iris paint, softened the blush marks, and adjusted the head tilt. The staged build passes Chrome startup before publication. The next pass reduces dense arm geometry while preserving the reviewed silhouette and hand shapes.",
   "status": "Refining reference likeness",
   "testsSummary": "Chrome: 0 JavaScript errors; 0 invalid coordinates",
   "iterations": [
@@ -259,6 +259,96 @@
       "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-front.png",
       "buildHash": "8dc42d847be1f041",
       "reviewedAt": "2026-10-03T06:16:58.237Z"
+    },
+    {
+      "iteration": 28,
+      "score": 88,
+      "title": "Connected cloth rather than a separate flap",
+      "note": "The pillow pinch is now part of the pillow surface. Review found the cloth obscuring too much of the gripping hand and the front fabric too bright; the next pass adjusts contact depth and restores fold shading.",
+      "image": "./preview/iteration-28-pillowhand3q.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-28-pillowhand3q.png",
+      "buildHash": "f793e1110755858d",
+      "reviewedAt": "2026-10-03T06:24:10.394Z"
+    },
+    {
+      "iteration": 29,
+      "score": 88,
+      "title": "Visible fingers and better cloth contact",
+      "note": "Moved the gripping hand forward and restored readable fabric shading. Fingers are visible again, but the macro view still reveals a separate wrist surface. The next pass replaces each arm and hand with one connected sculpt.",
+      "image": "./preview/iteration-29-pillowhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-29-pillowhand.png",
+      "buildHash": "45589140c3354fcc",
+      "reviewedAt": "2026-10-03T06:28:35.837Z"
+    },
+    {
+      "iteration": 30,
+      "score": 87,
+      "title": "Continuous wrists need finer local sampling",
+      "note": "Unified each arm and hand into one sculpt, but the close-up exposed coarse finger shading and an outline artifact. The topology audit also caught a clipped shoulder boundary. The next pass concentrates samples on the hands, expands the shoulder bounds, and reduces the hand outline thickness.",
+      "image": "./preview/iteration-30-pillowhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-30-pillowhand.png",
+      "buildHash": "789fddee6a381913",
+      "reviewedAt": "2026-10-03T06:33:17.985Z"
+    },
+    {
+      "iteration": 31,
+      "score": 88,
+      "title": "Seamless wrists with concentrated hand detail",
+      "note": "Adaptive sampling improves the wrist transition and fingers. The audit localized a small opening to the hidden shoulder sampling boundary, not the hand. The next edit expands that boundary, gives the fingers more samples in every axis, and restores crisp arm contours without thick finger outlines.",
+      "image": "./preview/iteration-31-pillowhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-31-pillowhand.png",
+      "buildHash": "39e2ead2597e64f5",
+      "reviewedAt": "2026-10-03T06:37:48.842Z"
+    },
+    {
+      "iteration": 32,
+      "score": 89,
+      "title": "One continuous surface from arm to fingertips",
+      "note": "Both arms now flow into the wrists, palms and fingers without separate wrist pieces. The corrected anatomy audit reports zero open or nonmanifold edges on both arm-hand surfaces. Tapered ink keeps the arm silhouette clear while avoiding thick outlines between the fingers.",
+      "image": "./preview/iteration-32-raisedhand.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-32-raisedhand.png",
+      "buildHash": "6edd400c8694e726",
+      "reviewedAt": "2026-10-03T06:42:21.086Z"
+    },
+    {
+      "iteration": 33,
+      "score": 89,
+      "title": "Soft slipper seams and ribbon-shaped bows",
+      "note": "Replaced the pearl-like trim with a gathered seam and modeled ribbon loops. Close-up review found a gap between the rounded sole and trim, so the next pass rebuilds the sole as a filled padded volume and removes the overly square bow tails.",
+      "image": "./preview/iteration-33-feet.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-33-feet.png",
+      "buildHash": "ded5c0bd2158e067",
+      "reviewedAt": "2026-10-03T06:47:27.829Z"
+    },
+    {
+      "iteration": 34,
+      "score": 90,
+      "title": "More natural hair flow and connected footwear",
+      "note": "Varied the rear hair lengths and drift, replacing broad repeated stripes with narrow surface-following highlights. The padded slipper soles are now connected, and both arm-hand surfaces remain closed after smoothing. Next: fabric thickness, shoulder coverage, and the headband.",
+      "image": "./preview/iteration-34-back.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-34-back.png",
+      "buildHash": "fa636c5ac867947a",
+      "reviewedAt": "2026-10-03T06:58:55.470Z"
+    },
+    {
+      "iteration": 35,
+      "score": 91,
+      "title": "Cloth thickness and a more natural headband",
+      "note": "Closed the cuff surfaces with thin fabric walls, improved the raised sleeve coverage, slimmed the slipper soles, and replaced the foam-like headband with a gathered cloth band. The build now receives a Chrome startup check before publication.",
+      "image": "./preview/iteration-35-portrait.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-portrait.png",
+      "buildHash": "e5ac5f7783f05700",
+      "reviewedAt": "2026-10-03T07:12:56.666Z"
+    },
+    {
+      "iteration": 36,
+      "score": 91,
+      "title": "Softer expression and warmer skin tone",
+      "note": "Opened the eyes slightly, refined the violet iris paint, softened the blush marks, and adjusted the head tilt. The staged build passes Chrome startup before publication. The next pass reduces dense arm geometry while preserving the reviewed silhouette and hand shapes.",
+      "image": "./preview/iteration-36-portrait.png",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-portrait.png",
+      "buildHash": "e1fd68745febf1e9",
+      "reviewedAt": "2026-10-03T07:17:04.080Z"
     }
   ],
   "requestedIterations": 20000,
@@ -270,39 +360,39 @@
   },
   "latestViews": [
     {
-      "url": "./preview/iteration-27-front.png",
-      "label": "Full character · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-front.png"
+      "url": "./preview/iteration-36-front.png",
+      "label": "Full character · review 36",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-front.png"
     },
     {
-      "url": "./preview/iteration-27-raisedhand.png",
-      "label": "Right hand · temple · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-raisedhand.png"
+      "url": "./preview/iteration-36-raisedhand.png",
+      "label": "Right hand · temple · review 36",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-raisedhand.png"
     },
     {
-      "url": "./preview/iteration-26-pillowhand.png",
-      "label": "Left hand · pillow · review 26",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-26-pillowhand.png"
+      "url": "./preview/iteration-34-pillowhand.png",
+      "label": "Left hand · pillow · review 34",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-34-pillowhand.png"
     },
     {
-      "url": "./preview/iteration-27-legs.png",
-      "label": "Matched leg proportions · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-legs.png"
+      "url": "./preview/iteration-35-legs.png",
+      "label": "Matched leg proportions · review 35",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-legs.png"
     },
     {
-      "url": "./preview/iteration-27-portrait.png",
-      "label": "Portrait · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-portrait.png"
+      "url": "./preview/iteration-36-portrait.png",
+      "label": "Portrait · review 36",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-36-portrait.png"
     },
     {
-      "url": "./preview/iteration-27-side.png",
-      "label": "Side view · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-side.png"
+      "url": "./preview/iteration-35-side.png",
+      "label": "Side view · review 35",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-side.png"
     },
     {
-      "url": "./preview/iteration-27-back.png",
-      "label": "Rear hair and costume · review 27",
-      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-27-back.png"
+      "url": "./preview/iteration-35-back.png",
+      "label": "Rear hair and costume · review 35",
+      "absolutePath": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web/preview/iteration-35-back.png"
     }
   ]
 }

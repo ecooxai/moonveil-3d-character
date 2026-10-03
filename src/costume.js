@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {V,mesh,gridGeometry,sampleRows,loft,sweep,line,ellipsoid,patch,polygonShape,contourVolume} from './geometry.js';
+import {V,mesh,gridGeometry,sampleRows,loft,sweep,line,ellipsoid,patch,polygonShape,contourVolume,solidify} from './geometry.js';
 const profile=[[3.43,.59,.303],[3.76,.544,.29],[4.12,.495,.278],[4.46,.492,.267],[4.78,.495,.253],[5.04,.47,.228]];
 function dims(y){let i=0;while(i<profile.length-2&&profile[i+1][0]<y)i++;const a=profile[i],b=profile[i+1],t=THREE.MathUtils.clamp((y-a[0])/(b[0]-a[0]),0,1);return [THREE.MathUtils.lerp(a[1],b[1],t),THREE.MathUtils.lerp(a[2],b[2],t)];}
 function drape(x,y){
@@ -14,7 +14,7 @@ function frontZ(x,y){const [rx,rz]=dims(y),side=Math.sqrt(Math.max(.04,1-(x/rx)*
 function ruffle(root,name,center,axis,rx,rz,mat,piping,lobes=8){
  const t=V(axis).normalize(),b=new THREE.Vector3(0,0,1).addScaledVector(t,-t.z).normalize(),n=b.clone().cross(t).normalize();
  const point=(u,v)=>{const a=u*Math.PI*2,phase=(u*lobes)%1,ripple=Math.sqrt(Math.max(0,1-(phase*2-1)**2)),p=V(center);p.addScaledVector(t,-.014+v*(.064+.137*ripple));p.addScaledVector(n,Math.cos(a)*(rx+.029*v+.024*Math.sin(Math.PI*v)));p.addScaledVector(b,Math.sin(a)*(rz+.018*v+.023*Math.sin(Math.PI*v))); return p.toArray();};
- mesh(root,name,gridGeometry(lobes*20,16,point),mat,.0035);
+ mesh(root,name,solidify(gridGeometry(lobes*18,14,point),.006),mat,.0018);
  const edge=[];for(let i=0;i<lobes*20;i++)edge.push(point(i/(lobes*20),1));line(root,`${name} narrow hem`,edge,.004,piping,{steps:lobes*20,sides:6,closed:true});
 }
 export function buildCostume(root,M){
@@ -27,10 +27,12 @@ export function buildCostume(root,M){
  mesh(clothes,'Loose button shirt with open V neckline',gridGeometry(100,65,shirtPoint),M.cloth,.005);
  const hem=[];for(let i=0;i<100;i++)hem.push(shirtPoint(i/100,0));line(clothes,'Shirt turned hem',hem,.006,M.piping,{steps:140,sides:6,closed:true});
  // Soft short sleeves follow the arm axes and are finished with scalloped cuffs.
- sweep(clothes,'Raised short sleeve',[[-.41,5.026,0],[-.52,4.986,.012],[-.65,4.91,.027],[-.754,4.833,.041]],[.15,.217,.23,.209],[.165,.236,.24,.218],M.sleeve,{steps:32,sides:40,outline:.005});
+ sweep(clothes,'Raised short sleeve',[[-.29,4.985,-.015],[-.41,5.026,0],[-.52,4.986,.012],[-.65,4.91,.027],[-.754,4.833,.041]],[.03,.18,.217,.23,.209],[.035,.19,.236,.24,.218],M.sleeve,{steps:32,sides:40,outline:.005});
  ruffle(clothes,'Raised sleeve scallops',[-.754,4.833,.041],[-.104,-.077,.014],.210,.218,M.blue,M.white,7);
  sweep(clothes,'Lowered short sleeve',[[.405,5.035,-.023],[.53,4.915,-.003],[.58,4.768,.009],[.625,4.579,.032]],[.14,.213,.233,.215],[.165,.23,.243,.218],M.sleeve,{steps:36,sides:40,outline:.005});
  ruffle(clothes,'Lowered sleeve scallops',[.625,4.579,.032],[.045,-.189,.023],.215,.218,M.blue,M.white,7);
+ const facing=new THREE.Shape();facing.moveTo(-.134,4.989);facing.quadraticCurveTo(-.086,4.954,-.022,4.965);facing.lineTo(-.028,4.672);facing.quadraticCurveTo(-.102,4.802,-.134,4.989);facing.closePath();
+ patch(clothes,'White inner left facing',facing,M.white,(x,y)=>frontZ(x,y)+.014,.007,0);
  const left=new THREE.Shape();left.moveTo(-.145,5.11);left.quadraticCurveTo(-.32,5.10,-.417,4.99);left.quadraticCurveTo(-.443,4.938,-.313,4.917);left.lineTo(-.365,4.833);left.quadraticCurveTo(-.248,4.70,-.024,4.616);left.lineTo(-.116,4.92);left.closePath();
  const right=new THREE.Shape();right.moveTo(.166,5.1);right.quadraticCurveTo(.344,5.056,.423,4.96);right.quadraticCurveTo(.37,4.886,.282,4.896);right.quadraticCurveTo(.394,4.801,.333,4.761);right.lineTo(-.021,4.619);right.lineTo(.137,4.913);right.closePath();
  for(const [name,s]of[['Right white lapel',left],['Left white lapel',right]]){
@@ -51,7 +53,11 @@ export function buildCostume(root,M){
  uv.needsUpdate=true;
  line(clothes,'Pocket upper welt',[[.145,4.493,frontZ(.145,4.493)+.041],[.278,4.469,frontZ(.278,4.469)+.041],[.406,4.428,frontZ(.406,4.428)+.041]],.006,M.white,{steps:32,sides:8});
  for(const s of [-1,1]){
-  loft(clothes,`${s<0?'Right':'Left'} loose pajama shorts`,[[2.835,s*.258,.045,.282,.335],[2.94,s*.26,.04,.316,.356],[3.14,s*.254,.025,.309,.347],[3.37,s*.244,.008,.286,.301],[3.635,s*.218,-.005,.28,.278],[3.74,s*.214,-.008,.21,.22]],M.shorts,{segments:56,steps:45,outline:.005,deform:(p,u,v)=>[p[0]+.006*Math.cos(u*Math.PI*12)*(1-v),p[1],p[2]+.018*Math.sin(u*Math.PI*10+v*3)*(1-v)*Math.sin(v*Math.PI)]});
+  loft(clothes,`${s<0?'Right':'Left'} loose pajama shorts`,[[2.835,s*.258,.045,.282,.335],[2.94,s*.26,.04,.316,.356],[3.14,s*.254,.025,.309,.347],[3.37,s*.244,.008,.286,.301],[3.635,s*.218,-.005,.28,.278],[3.74,s*.214,-.008,.21,.22]],M.shorts,{segments:56,steps:45,outline:.005,deform:(p,u,v)=>{
+   const a=u*Math.PI*2,wrap=x=>Math.atan2(Math.sin(x),Math.cos(x)),g=(x,w)=>Math.exp(-Math.pow(wrap(x)/w,2));
+   const fold=Math.sin(Math.PI*v)*(-.028*g(a+s*(.54-.30*v),.16)+.015*g(a-s*.54,.22)+.012*Math.sin(a*8+s*.7)*Math.exp(-Math.pow((v-.22)/.20,2)));
+   return [p[0]+fold*Math.sin(a)+.006*Math.cos(a*6)*(1-v),p[1],p[2]+fold*Math.cos(a)+(s>0?.045:0)*(1-v)];
+  }});
   ruffle(clothes,`${s<0?'Right':'Left'} shorts scallops`,[s*.258,2.85,.045+(s>0?.045:0)],[0,-1,0],.28,.329,M.blue,M.white,9);
  }
  line(clothes,'Shorts center front seam',[[0,3.59,.294],[.006,3.39,.30],[.014,3.19,.298],[.014,3.02,.202]],.004,M.piping,{steps:36,sides:6});

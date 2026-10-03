@@ -15,7 +15,7 @@ export function createDrawTree(source){
   if(outline){
    // Expand in local coordinates before baking nonuniform sphere transforms.
    const thickness=material.uniforms.thickness.value,p=geometry.attributes.position,n=geometry.attributes.normal;
-   for(let i=0;i<p.count;i++)p.setXYZ(i,p.getX(i)+n.getX(i)*thickness,p.getY(i)+n.getY(i)*thickness,p.getZ(i)+n.getZ(i)*thickness);
+   for(let i=0;i<p.count;i++){const t=thickness*(object.userData.extrusionWeights?.[i]??1);p.setXYZ(i,p.getX(i)+n.getX(i)*t,p.getY(i)+n.getY(i)*t,p.getZ(i)+n.getZ(i)*t);}
    const color=material.uniforms.ink.value,key=color.getHexString();
    if(!ink.has(key))ink.set(key,new THREE.MeshBasicMaterial({name:'Baked silhouette ink',color:color.clone(),side:THREE.BackSide}));
    material=ink.get(key);

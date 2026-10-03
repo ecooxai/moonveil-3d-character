@@ -10,7 +10,7 @@ export function makeMaterials(){
  const fabric=fabricTexture();fabric.repeat.set(1.60,1.08);const sleeve=fabric.clone();sleeve.repeat.set(.68,.46);const shorts=fabric.clone();shorts.repeat.set(.97,.72);
  const basic=(name,color)=>new THREE.MeshBasicMaterial({name,color});
  return {
- face:toon('Soft porcelain face','#fff5f0'),skin:skin('Warm porcelain skin','#ffece5'),skinShade:toon('Warm fingers and ears','#f3c5c6'),
+ face:toon('Soft porcelain face','#fff5f0'),skin:skin('Warm porcelain skin','#fff3ec'),skinShade:toon('Warm fingers and ears','#f3c5c6'),
  hair:toon('Dusty violet hair','#696696'),hairLight:toon('Violet hair light','#7879b0'),hairDark:toon('Deep violet underneath','#54527e'),hairShine:toon('Soft lilac hair ribbons','#8386ba'),
  cloth:toon('Powder blue cat-print cotton','#ffffff',{map:fabric,side:THREE.DoubleSide}),sleeve:toon('Cat-print sleeve cotton','#ffffff',{map:sleeve,side:THREE.DoubleSide}),shorts:toon('Cat-print shorts cotton','#ffffff',{map:shorts,side:THREE.DoubleSide}),blue:toon('Powder blue ruffles','#c6ebf7'),white:toon('Soft ivory cotton','#fbfcff'),whiteShade:toon('Ivory folded edges','#dbe5f1'),piping:toon('Blue-grey seam piping','#96b4c6'),
  ink:basic('Eyelash ink','#453b55'),lowerLid:basic('Soft lower eyelid','#aa91a7'),eye:new THREE.MeshBasicMaterial({name:'Violet eye painting',map:eyeTexture(),side:THREE.DoubleSide}),blush:new THREE.MeshBasicMaterial({name:'Soft cheek blush',map:blushTexture(),transparent:true,depthWrite:false,side:THREE.DoubleSide}),mouth:basic('Rose mouth line','#b38591'),pink:toon('Muted rose bows','#bc77a2'),pinkLight:toon('Rose bow highlight','#dda8c9'),

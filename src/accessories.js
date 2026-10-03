@@ -1,23 +1,40 @@
 import * as THREE from 'three';
 import {LEGS} from './anatomy.js';
-import {mesh,gridGeometry,sweep,line,ellipsoid,V} from './geometry.js';
+import {mesh,gridGeometry,sweep,line,ellipsoid,V,contourVolume,loft} from './geometry.js';
 function shoe(root,M,name,x,y,z,far=false){
- const group=new THREE.Group();group.name=name+' assembly';group.position.x=x;group.scale.x=1.24;root.add(group);root=group;x=0;
+ const group=new THREE.Group();group.name=name+' assembly';group.position.x=x;group.scale.x=1.18;root.add(group);root=group;x=0;
  const m=far?M.whiteShade:M.white;
- ellipsoid(root,`${name} soft sole`,[x,y+.045,z],[.166,.044,.285],M.whiteShade,.019,44);
- ellipsoid(root,`${name} foot`,[x,y+.130,z-.023],[.111,.107,.208],M.skin,.005,36);
- ellipsoid(root,`${name} padded upper`,[x,y+.147,z+.091],[.162,.123,.184],m,.016,44);
- const rim=mesh(root,`${name} heel opening`,new THREE.TorusGeometry(.098,.015,10,48),m,.003);rim.rotation.x=Math.PI/2;rim.position.set(x,y+.16,z-.095);rim.scale.y=1.09;
- for(let i=0;i<11;i++){const a=-1.55+i/10*3.10;ellipsoid(root,`${name} plush edge ${i+1}`,[x+Math.sin(a)*.148,y+.094,z+.087+Math.cos(a)*.167],[.024,.029,.027],m,0,16);}
- const by=y+.248,bz=z+.226;
- for(const s of [-1,1]){const loop=ellipsoid(root,`${name} rose ribbon loop`,[x+s*.054,by,bz],[.058,.025,.032],M.pink,.010,28);loop.rotation.y=s*.25;}
- ellipsoid(root,`${name} bow knot`,[x,by+.005,bz],[.022,.022,.023],M.pinkLight,.015,24);
+ loft(root,`${name} soft sole`,[[y+.002,x,z,.001,.001],[y+.009,x,z,.142,.246],[y+.016,x,z,.169,.284],[y+.034,x,z,.171,.286],[y+.056,x,z,.163,.278],[y+.068,x,z,.131,.23],[y+.069,x,z,.001,.001]],M.whiteShade,{segments:64,steps:30,outline:.002});
+ ellipsoid(root,`${name} foot`,[x,y+.133,z-.035],[.107,.102,.203],M.skin,0,36);
+ const upper=ellipsoid(root,`${name} padded upper`,[x,y+.136,z+.090],[.168,.132,.200],m,.003,52);
+ const a=upper.geometry.attributes.position;
+ for(let i=0;i<a.count;i++){const xx=a.getX(i),yy=a.getY(i),zz=a.getZ(i),ripple=.007*Math.sin(xx*29+zz*17)*Math.sin(yy*31-zz*13);a.setXYZ(i,xx*(1+ripple),yy*(1+ripple),zz*(1+ripple));}
+ a.needsUpdate=true;upper.geometry.computeVertexNormals();
+ const rim=mesh(root,`${name} heel opening`,new THREE.TorusGeometry(.097,.013,12,56),m,.0015);rim.rotation.x=Math.PI/2;rim.position.set(x,y+.149,z-.096);rim.scale.y=1.10;
+ // A continuous softly gathered edge replaces the previous row of spherical beads.
+ mesh(root,`${name} gathered plush edge`,gridGeometry(128,14,(u,v)=>{
+  const theta=-1.88+u*3.76,phi=v*Math.PI*2,r=.0175*(1+.10*Math.sin(theta*19)+.065*Math.cos(theta*31));
+  return [Math.sin(theta)*(.157+r*Math.cos(phi)),y+.077+r*Math.sin(phi),z+.087+Math.cos(theta)*(.180+r*Math.cos(phi))];
+ }),m,.0012);
+ const by=y+.245,bz=z+.218;
+ for(const sign of [-1,1]){
+  const shape=new THREE.Shape();shape.moveTo(x,by);shape.bezierCurveTo(x+sign*.029,by+.008,x+sign*.079,by+.045,x+sign*.083,by+.022);
+  shape.quadraticCurveTo(x+sign*.095,by-.032,x+sign*.069,by-.032);shape.quadraticCurveTo(x+sign*.031,by-.026,x,by-.004);shape.closePath();
+  contourVolume(root,`${name} ribbon loop ${sign}`,shape,M.pink,(xx,yy)=>bz+.007*Math.sin((xx-x)*22)+.20*(by-yy),{depth:.009,bevel:.003,outline:.0013});
+  line(root,`${name} ribbon crease ${sign}`,[[x+sign*.015,by,bz+.014],[x+sign*.043,by+.008,bz+.014],[x+sign*.067,by+.012,bz+.016]],.0017,M.pinkLight,{steps:18,sides:5});
+ }
+ ellipsoid(root,`${name} bow knot`,[x,by-.002,bz+.012],[.014,.021,.012],M.pinkLight,.0015,24);
 }
 export function buildAccessories(root,M){
  const accessories=new THREE.Group();accessories.name='Accessories / halo, bow, slippers, pillow';root.add(accessories);
- const arch=[];for(let i=0;i<=32;i++){const a=i/32*Math.PI;arch.push([.572*Math.cos(a),5.866+.470*Math.sin(a),.005+.14*Math.cos(a)**2]);}
- line(accessories,'Soft white headband',arch,.055,M.white,{steps:90,sides:12});
- for(let i=0;i<17;i++){const a=i/16*Math.PI;ellipsoid(accessories,'Headband gathered fold',[.572*Math.cos(a),5.866+.470*Math.sin(a),.005+.14*Math.cos(a)**2],[.05,.054,.049],M.white,0,20);}
+ // A softly gathered cloth band, broader across the hair and flatter than a foam tube.
+ const bandPoint=(u,v)=>{
+  const theta=u*Math.PI,alpha=v*Math.PI*2,gather=.0035*Math.sin(theta*38+.4)+.0018*Math.sin(theta*64),r=.036+gather;
+  return [(.529+r*Math.cos(alpha))*Math.cos(theta),5.867+(.447+r*Math.cos(alpha))*Math.sin(theta),-.015+.077*Math.sin(alpha)+.105*Math.cos(theta)**2];
+ };
+ mesh(accessories,'Soft white headband',gridGeometry(112,24,bandPoint),M.white,.0018);
+ for(const sign of [-1,1])ellipsoid(accessories,'Headband padded end',[sign*.529,5.867,.090],[.038,.037,.077],M.white,.001,28);
+ const edge=[];for(let i=0;i<=60;i++)edge.push(bandPoint(i/60,.205));line(accessories,'Headband fine gathered seam',edge,.0014,M.whiteShade,{steps:140,sides:5});
  sweep(accessories,'White bow left leaf',[[-.019,6.327,.080],[-.162,6.420,.064],[-.300,6.478,.048],[-.448,6.463,.024]],[.028,.102,.088,.001],[.023,.036,.028,.001],M.white,{steps:42,sides:18,outline:.004});
  sweep(accessories,'White bow upward leaf',[[.02,6.327,.075],[.142,6.45,.055],[.264,6.578,.026],[.312,6.664,.013]],[.027,.106,.074,.001],[.026,.04,.025,.001],M.white,{steps:42,sides:18,outline:.004});
  ellipsoid(accessories,'White bow center knot',[0,6.335,.095],[.061,.057,.049],M.white,.025,32);
@@ -30,12 +47,12 @@ export function buildAccessories(root,M){
  const glow=mesh(halo,'Fine cyan halo inlay',new THREE.TorusGeometry(.650,.0045,8,128),M.haloBlue,0);glow.rotation.x=Math.PI/2;glow.position.y=.015;
  const inner=mesh(halo,'Dark inner halo rim',new THREE.TorusGeometry(.591,.003,8,100),M.haloDark,0);inner.rotation.x=Math.PI/2;inner.position.y=.012;
  for(const leg of LEGS)shoe(accessories,M,leg.side==='right'?'Far slipper':'Near slipper',...leg.shoe,leg.side==='right');
- const A=V([1.144,3.158,.258]),B=V([2.06,2.344,.034]),C=V([.935,.718,-.08]),D=V([-.13,1.442,-.445]);
- const AB=new THREE.CubicBezierCurve3(A,V([1.149,3.050,.262]),V([1.852,2.392,.055]),B);
+ const A=V([1.144,3.158,.228]),B=V([2.06,2.344,.034]),C=V([.935,.718,-.08]),D=V([-.13,1.442,-.445]);
+ const AB=new THREE.CubicBezierCurve3(A,V([1.149,3.050,.220]),V([1.852,2.392,.055]),B);
  const BC=new THREE.CubicBezierCurve3(B,V([1.945,1.893,.018]),V([1.010,.903,-.068]),C);
  const DC=new THREE.CubicBezierCurve3(D,V([.165,1.409,-.360]),V([.800,.863,-.137]),C);
- const AD=new THREE.CubicBezierCurve3(A,V([1.060,3.130,.258]),V([-.304,1.963,-.461]),D);
- const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.emissiveIntensity=.48;
+ const AD=new THREE.CubicBezierCurve3(A,V([1.060,3.130,.220]),V([-.304,1.963,-.461]),D);
+ const pillowFront=M.white.clone();pillowFront.name='Soft filled pillow cotton';pillowFront.emissiveIntensity=.40;pillowFront.gradientMap=M.skin.gradientMap;
  const pillowPoint=(u,v,side)=>{
   const q=1-v,base=A.clone().multiplyScalar((1-u)*(1-q)).addScaledVector(B,u*(1-q)).addScaledVector(C,u*q).addScaledVector(D,(1-u)*q);
   const p=AB.getPoint(u).multiplyScalar(1-q).addScaledVector(DC.getPoint(u),q).addScaledVector(AD.getPoint(q),1-u).addScaledVector(BC.getPoint(q),u).sub(base);

@@ -1,21 +1,24 @@
 import * as THREE from 'three';
 import {mesh,ellipsoid,line,inkMaterial} from './geometry.js';
-import {HANDS} from './hand-shapes.js';
+import {HANDS,ARMS} from './hand-shapes.js';
 import baked from './hand-meshes.json';
 function decode(text,Type){const binary=atob(text),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return new Type(bytes.buffer);}
 function geometry(name){
- const data=baked[name],q=decode(data.positions,Int16Array),positions=new Float32Array(q.length);
- for(let i=0;i<q.length;i++)positions[i]=q[i]*baked.scale;
- const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(positions,3));g.setIndex(new THREE.BufferAttribute(decode(data.indices,Uint16Array),1));
+ const data=baked[name],q=decode(data.positions,Uint16Array),positions=new Float32Array(q.length);
+ for(let i=0;i<q.length;i++)positions[i]=data.min[i%3]+q[i]/65535*data.span[i%3];
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(positions,3));g.setIndex(new THREE.BufferAttribute(decode(data.indices,data.indexBytes===4?Uint32Array:Uint16Array),1));
  g.setAttribute('uv',new THREE.BufferAttribute(new Float32Array(positions.length/3*2),2));g.computeVertexNormals();g.computeBoundingSphere();return g;
 }
 export function buildHands(body,M){
  const nails=M.skin.clone();nails.name='Natural satin nail plates';nails.color.set('#fce9e8');nails.emissive.set('#fce9e8');nails.emissiveIntensity=.35;
  for(const [key,spec]of Object.entries(HANDS)){
   const group=new THREE.Group();group.name=key==='raised'?'Right hand / relaxed temple gesture':'Left hand / pillow grip';group.position.set(...spec.origin);group.rotation.set(...spec.rotation,'ZYX');body.add(group);
-  const skin=mesh(group,key==='raised'?'Raised hand continuous skin':'Pillow hand continuous skin',geometry(key),M.skin,.0009);
-  skin.userData.anatomy={fingers:spec.fingers.map(f=>({name:f.name,landmarks:f.points})),continuousPalm:true};
-  skin.receiveShadow=false;skin.children[0].material=inkMaterial(.0009,'#8c7280');
+  const skin=mesh(body,ARMS[key].name,geometry(key),M.skin,.0045);
+  skin.userData.anatomy={fingers:spec.fingers.map(f=>({name:f.name,landmarks:f.points})),continuousPalm:true,continuousWrist:true,handOrigin:spec.origin,handRotation:spec.rotation};
+  skin.receiveShadow=false;skin.children[0].material=inkMaterial(.0045,'#67515f');
+  const inv=new THREE.Matrix4().compose(new THREE.Vector3(...spec.origin),new THREE.Quaternion().setFromEuler(new THREE.Euler(...spec.rotation,'ZYX')),new THREE.Vector3(1,1,1)).invert(),pos=skin.geometry.attributes.position,v=new THREE.Vector3(),weights=new Float32Array(pos.count);
+  for(let i=0;i<pos.count;i++){v.fromBufferAttribute(pos,i).applyMatrix4(inv);weights[i]=1-.85*THREE.MathUtils.smoothstep(v.y,-.20,.025);}
+  skin.children[0].userData.extrusionWeights=weights;
   for(const finger of spec.fingers){
    const curve=new THREE.CatmullRomCurve3(finger.points.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.27),t=.88,p=curve.getPoint(t),direction=curve.getTangent(t).normalize();
    const normal=new THREE.Vector3(0,0,key==='raised'?-1:-1).addScaledVector(direction,direction.z).normalize();
