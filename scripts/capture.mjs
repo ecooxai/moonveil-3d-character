@@ -1,0 +1,16 @@
+import {chromium} from 'playwright-core';
+import {browserOptions} from './browser.mjs';
+import {mkdir,writeFile,copyFile} from 'node:fs/promises';
+import path from 'node:path';
+const tag=process.argv[2]||'iteration-01',view=process.argv[3]||'front';
+const output=path.resolve('output/iterations');await mkdir(output,{recursive:true});
+const browser=await chromium.launch(browserOptions());
+const page=await browser.newPage({viewport:{width:1000,height:1250},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await page.goto(`http://127.0.0.1:4186/?render=${view}`,{waitUntil:'networkidle',timeout:60000});
+await page.waitForFunction(()=>window.atelier?.ready,null,{timeout:60000,polling:100});await page.waitForFunction(()=>getComputedStyle(document.querySelector('#loading')).visibility==='hidden');await page.waitForTimeout(800);
+await page.screenshot({path:path.join(output,`${tag}-${view}.png`)});
+const stats=await page.evaluate(()=>({buildHash:window.MOONVEIL_BUILD,...window.atelier.validate(),render:window.atelier.renderer.info.render}));
+await writeFile(path.join(output,`${tag}-${view}.json`),JSON.stringify({tag,view,stats,errors},null,2));
+await copyFile(path.join(output,`${tag}-${view}.png`),path.resolve(`build/preview/${tag}-${view}.png`));
+console.log(JSON.stringify({tag,view,stats,errors}));await browser.close();

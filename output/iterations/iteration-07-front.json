@@ -1,0 +1,37 @@
+{
+  "tag": "iteration-07",
+  "view": "front",
+  "stats": {
+    "buildHash": "a35fa99facbba5cc",
+    "meshes": 193,
+    "vertices": 158472,
+    "triangles": 261460,
+    "materials": 22,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1729953289031982,
+        0.015,
+        -0.6904763589152173
+      ],
+      "max": [
+        1.9420000314712524,
+        6.967247864585,
+        0.8915820268988609
+      ],
+      "size": [
+        3.1149953603744507,
+        6.952247864585,
+        1.5820583858140782
+      ]
+    },
+    "render": {
+      "frame": 3,
+      "calls": 279,
+      "triangles": 466530,
+      "points": 0,
+      "lines": 0
+    }
+  },
+  "errors": []
+}

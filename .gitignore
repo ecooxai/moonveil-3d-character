@@ -1,0 +1,12 @@
+node_modules/
+.cache/
+build
+output/validation/*.png
+output/iterations/*.png
+output/*.zip
+output/*.glb
+output/*.html
+*.log
+
+__pycache__/
+output/release.json

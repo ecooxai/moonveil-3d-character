@@ -1,0 +1,293 @@
+{
+  "checkedAt": "2026-10-03T04:25:55.991Z",
+  "checks": [
+    {
+      "name": "Geometry contains no invalid coordinates",
+      "passed": true
+    },
+    {
+      "name": "The model has real depth and complete volume",
+      "passed": true,
+      "detail": [
+        3.2626965045928955,
+        6.822700102021289,
+        1.58167680336993
+      ]
+    },
+    {
+      "name": "Batching preserves the triangle count",
+      "passed": true
+    },
+    {
+      "name": "Batched drawing uses fewer than 40 meshes",
+      "passed": true,
+      "detail": {
+        "inputMeshes": 273,
+        "drawMeshes": 30,
+        "method": "Exact material batching with baked outline extrusion"
+      }
+    },
+    {
+      "name": "Semantic character parts remain editable",
+      "passed": true
+    },
+    {
+      "name": "Desktop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Camera preset: front",
+      "passed": true,
+      "detail": "FRONT STUDY"
+    },
+    {
+      "name": "Camera preset: threequarter",
+      "passed": true,
+      "detail": "THREE-QUARTER STUDY"
+    },
+    {
+      "name": "Camera preset: side",
+      "passed": true,
+      "detail": "SIDE STUDY"
+    },
+    {
+      "name": "Camera preset: back",
+      "passed": true,
+      "detail": "BACK STUDY"
+    },
+    {
+      "name": "Camera preset: portrait",
+      "passed": true,
+      "detail": "PORTRAIT STUDY"
+    },
+    {
+      "name": "Wireframe toggles and restores ink",
+      "passed": true
+    },
+    {
+      "name": "Night backdrop toggles",
+      "passed": true
+    },
+    {
+      "name": "Turntable changes the camera",
+      "passed": true
+    },
+    {
+      "name": "Mouse drag orbits the model",
+      "passed": true
+    },
+    {
+      "name": "Mouse wheel zooms the model",
+      "passed": true
+    },
+    {
+      "name": "Snapshot produces a PNG file",
+      "passed": true,
+      "detail": 153206
+    },
+    {
+      "name": "Desktop camera controls do not cover the feet",
+      "passed": true,
+      "detail": {
+        "lowestFootPixel": 802.988345314208,
+        "controlsTop": 831,
+        "clearance": 28.011654685791996
+      }
+    },
+    {
+      "name": "GLB export completes",
+      "passed": true,
+      "detail": {
+        "bytes": 8961480,
+        "nodes": 203,
+        "meshes": 194,
+        "materials": 25,
+        "images": 3,
+        "externalUris": 0
+      }
+    },
+    {
+      "name": "Exported GLB reloads as full geometry",
+      "passed": true,
+      "detail": {
+        "meshes": 194,
+        "vertices": 219934,
+        "triangles": 282572,
+        "materials": 25,
+        "badVertices": 0,
+        "bounds": {
+          "min": [
+            -1.1941087245941162,
+            0.015,
+            -0.6900947764710692
+          ],
+          "max": [
+            2.0685877799987793,
+            6.837700102021289,
+            0.8915820268988609
+          ],
+          "size": [
+            3.2626965045928955,
+            6.822700102021289,
+            1.58167680336993
+          ]
+        },
+        "animations": 0
+      }
+    },
+    {
+      "name": "24 turntable directions render successfully",
+      "passed": true,
+      "detail": {
+        "angles": 24,
+        "submissionMs": {
+          "min": 0.10000002384185791,
+          "max": 2.700000047683716,
+          "mean": 0.6208333323399226
+        },
+        "drawCalls": 33,
+        "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
+      }
+    },
+    {
+      "name": "Mobile has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Mobile camera controls are usable",
+      "passed": true
+    },
+    {
+      "name": "Mobile canvas fills its viewport",
+      "passed": true,
+      "detail": {
+        "x": 14.25,
+        "y": 117,
+        "width": 361.5,
+        "height": 698
+      }
+    },
+    {
+      "name": "Mobile camera controls do not cover the feet",
+      "passed": true,
+      "detail": {
+        "lowestFootPixel": 721.4489370503117,
+        "controlsTop": 743,
+        "clearance": 21.551062949688344
+      }
+    },
+    {
+      "name": "Standalone HTML renders without network access",
+      "passed": true
+    },
+    {
+      "name": "Browser raised no JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Read-only server health responds",
+      "passed": true
+    }
+  ],
+  "passed": 28,
+  "failed": 0,
+  "stats": {
+    "meshes": 194,
+    "vertices": 219934,
+    "triangles": 282572,
+    "materials": 25,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1941087245941162,
+        0.015,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.0685877799987793,
+        6.837700102021289,
+        0.8915820268988609
+      ],
+      "size": [
+        3.2626965045928955,
+        6.822700102021289,
+        1.58167680336993
+      ]
+    },
+    "batching": {
+      "inputMeshes": 273,
+      "drawMeshes": 30,
+      "method": "Exact material batching with baked outline extrusion"
+    },
+    "drawTree": {
+      "meshes": 29,
+      "vertices": 157410,
+      "triangles": 282572,
+      "materials": 25,
+      "badVertices": 0,
+      "bounds": {
+        "min": [
+          -1.199108362197876,
+          0.014163997955620289,
+          -0.6904951930046082
+        ],
+        "max": [
+          2.0685877799987793,
+          6.832502365112305,
+          0.896989107131958
+        ],
+        "size": [
+          3.2676961421966553,
+          6.818338367156684,
+          1.5874843001365662
+        ]
+      }
+    }
+  },
+  "exportInfo": {
+    "bytes": 8961480,
+    "nodes": 203,
+    "meshes": 194,
+    "materials": 25,
+    "images": 3,
+    "externalUris": 0
+  },
+  "roundTrip": {
+    "meshes": 194,
+    "vertices": 219934,
+    "triangles": 282572,
+    "materials": 25,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.1941087245941162,
+        0.015,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.0685877799987793,
+        6.837700102021289,
+        0.8915820268988609
+      ],
+      "size": [
+        3.2626965045928955,
+        6.822700102021289,
+        1.58167680336993
+      ]
+    },
+    "animations": 0
+  },
+  "benchmark": {
+    "angles": 24,
+    "submissionMs": {
+      "min": 0.10000002384185791,
+      "max": 2.700000047683716,
+      "mean": 0.6208333323399226
+    },
+    "drawCalls": 33,
+    "note": "CPU submission timing in software-rendered headless Chrome, not a mobile GPU FPS benchmark."
+  },
+  "errors": [],
+  "failedRequests": []
+}

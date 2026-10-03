@@ -1,0 +1,17 @@
+import {build} from 'esbuild';
+import {createHash} from 'node:crypto';
+import {readFile,writeFile,mkdir,rename,readdir} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.join(root,'build');await mkdir(out,{recursive:true});await mkdir(path.join(out,'preview'),{recursive:true});
+const digest=createHash('sha256');for(const f of (await readdir(path.join(root,'src'))).sort())digest.update(await readFile(path.join(root,'src',f)));const sourceHash=digest.digest('hex').slice(0,16);
+await build({banner:{js:`window.MOONVEIL_BUILD='${sourceHash}';`},entryPoints:[path.join(root,'src/main.js')],outfile:path.join(out,'app.js'),bundle:true,format:'iife',target:['es2022'],minify:true,legalComments:'eof'});
+const css=await readFile(path.join(root,'src/style.css'),'utf8'),html=await readFile(path.join(root,'src/index.html'),'utf8'),manifest=await readFile(path.join(root,'docs/manifest.json'),'utf8');
+await writeFile(path.join(out,'manifest.json.tmp'),manifest);await rename(path.join(out,'manifest.json.tmp'),path.join(out,'manifest.json'));
+await writeFile(path.join(out,'style.css'),css);await writeFile(path.join(out,'index.html'),html.replace('type="module" ',''));
+const js=(await readFile(path.join(out,'app.js'),'utf8')).replace(/<\/script/gi,'<\\/script');
+const embedded=`<script>window.MOONVEIL_MANIFEST=${manifest.replace(/</g,'\\u003c')};</script>`;
+const standalone=html.replace('<link rel="stylesheet" href="./style.css">',()=>`<style>${css}</style>`).replace('<script type="module" src="./app.js"></script>',()=>`${embedded}<script>${js}</script>`);
+await writeFile(path.join(out,'moonveil_gpt6-astra-pro_mcp-alagent_threejs.html'),standalone);
+console.log(JSON.stringify({build:out,sourceHash,bundleBytes:js.length,standaloneBytes:standalone.length,ok:true}));

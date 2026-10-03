@@ -1,0 +1,37 @@
+{
+  "tag": "iteration-16",
+  "view": "portrait",
+  "stats": {
+    "buildHash": "65ad25dec1e4f9fb",
+    "meshes": 194,
+    "vertices": 219934,
+    "triangles": 282572,
+    "materials": 25,
+    "badVertices": 0,
+    "bounds": {
+      "min": [
+        -1.2094820737838745,
+        0.015,
+        -0.6900947764710692
+      ],
+      "max": [
+        2.0685877799987793,
+        6.837700102021289,
+        0.8915820268988609
+      ],
+      "size": [
+        3.278069853782654,
+        6.822700102021289,
+        1.58167680336993
+      ]
+    },
+    "render": {
+      "frame": 3,
+      "calls": 170,
+      "triangles": 311544,
+      "points": 0,
+      "lines": 0
+    }
+  },
+  "errors": []
+}

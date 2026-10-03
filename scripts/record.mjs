@@ -1,0 +1,14 @@
+import {readFile,writeFile,stat} from 'node:fs/promises';
+const [id,scoreText,view,title,note]=process.argv.slice(2);
+const iteration=Number(id),score=Number(scoreText);
+if(!Number.isInteger(iteration)||!Number.isFinite(score)||score<0||score>100||!title||!note)throw Error('record: iteration score view title note required');
+const tag=`iteration-${String(iteration).padStart(2,'0')}`,file=`${tag}-${view}`;
+const evidence=JSON.parse(await readFile(`output/iterations/${file}.json`,'utf8'));
+await stat(`build/preview/${file}.png`);
+const data=JSON.parse(await readFile('docs/manifest.json','utf8'));
+const entry={iteration,score,title,note,image:`./preview/${file}.png`,absolutePath:`${data.buildPath}/preview/${file}.png`,buildHash:evidence.stats.buildHash,reviewedAt:new Date().toISOString()};
+data.iterations=data.iterations.filter(x=>x.iteration!==iteration).concat(entry).sort((a,b)=>a.iteration-b.iteration);
+data.visualScore=score;data.review=note;data.status='Refining reference likeness';
+data.testsSummary=`Chrome: ${evidence.errors.length} JavaScript errors; ${evidence.stats.badVertices} invalid coordinates`;
+await writeFile('docs/manifest.json',JSON.stringify(data,null,2)+'\n');
+console.log(JSON.stringify({recorded:iteration,subjectiveVisualScore:score,actualReviewedPasses:data.iterations.length}));
