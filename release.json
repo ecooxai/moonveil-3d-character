@@ -1,0 +1,34 @@
+{
+  "createdAt": "2026-10-03T09:50:48.374910+00:00",
+  "project": "/home/dev/project/3d/moonveil_gpt6_astra_pro_mcp_colabdev_web",
+  "build": "/build/moonveil_gpt6_astra_pro_mcp_colabdev_web",
+  "gitCommit": "903ea38b77bac551cd3fa67ee08410d571bb3a51",
+  "gitBranch": "gpt6-astra-pro-mcp-colabdev-hands-legs-polish",
+  "validation": {
+    "passed": 46,
+    "failed": 0
+  },
+  "sourceBuildHash": "498789d40a9ae64c",
+  "visualReview": 95,
+  "anatomyVerified": true,
+  "archiveEntries": 316,
+  "archiveIntegrity": "verified",
+  "persistentArchive": "/home/dev/Library/project/moonveil_gpt6_astra_pro_mcp_colabdev_web/moonveil_gpt6-astra-pro_mcp-colabdev_threejs.zip",
+  "files": [
+    {
+      "name": "moonveil_gpt6-astra-pro_mcp-colabdev_threejs.html",
+      "bytes": 1391767,
+      "sha256": "85e6eb5587ea7d5ca08e0f4801d2557d29778a25c6b878a23b3ce8b8ff563153"
+    },
+    {
+      "name": "moonveil_gpt6-astra-pro_mcp-colabdev_threejs.glb",
+      "bytes": 11923888,
+      "sha256": "c16174ac89a12966e2b043a7a95116f107885a7f8852742202a10eddc04c6e8e"
+    },
+    {
+      "name": "moonveil_gpt6-astra-pro_mcp-colabdev_threejs.zip",
+      "bytes": 25012380,
+      "sha256": "2713995d6b7cb342809f9069be4139dfb455220060cc3c8723ea0d5c93a5512a"
+    }
+  ]
+}
